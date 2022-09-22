@@ -1,0 +1,14 @@
+[
+    {
+        "empID":"",
+        "empName":"",
+        "age":"",
+        "contactNumber":"",
+        "emailID":"",
+        "department":"",
+        "designation":"",
+        "experience":"",
+        "salary":"",
+        "skills":[]
+    }
+]
