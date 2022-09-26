@@ -1,0 +1,45 @@
+header{
+    border-bottom: solid 2px #000000;
+    padding: 2em;
+    justify-content: space-between;
+}
+.flexbox{
+    display: flex;
+}
+main{
+    padding: 3em;
+    flex-direction: column;
+    align-items: center;
+}
+#employeeTable{
+    width: 80%;
+    border: solid 1px #000000;
+}
+th{
+    cursor: pointer;
+    background-color: #89c5fa;
+}
+th, td 
+{
+    text-align: left;
+    padding: 16px;
+}
+td
+{
+    background-color: #c2dcf3
+}
+#tableOperations{
+    width: 80%;
+    padding: 2.5em 1em;
+    /* justify-content: flex-end; */
+}
+.buttonStyle{
+    background-color: #89c5fa;
+    padding: 15px 8px;
+    border-radius: 10px;
+    border: solid 1px #000000;
+    cursor: pointer;
+}
+.buttonStyle:active{
+    background-color: #61b5ff;
+}
