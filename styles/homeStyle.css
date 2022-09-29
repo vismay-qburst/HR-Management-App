@@ -72,7 +72,6 @@ td {
     /* Black w/ opacity */
 }
 
-/* The Close Button */
 .close {
     color: #aaa;
     float: right;
@@ -129,4 +128,10 @@ td {
 .actionButton{
     width: 60px;
     padding: 10px;
+}
+
+.readOnlyField{
+    background-color: #cccccc;
+    color: #555555;
+    cursor: default;
 }

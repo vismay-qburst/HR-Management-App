@@ -33,17 +33,10 @@ function sortTable(columnIndex)
     if(shouldSwitch) 
     {
       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      console.log(i,rows[i].getElementsByTagName("TD")[6].innerHTML);
-      // let tempStorage=rows[i].getElementsByTagName("TD")[6].innerHTML
-      // console.log(tempStorage);
-      // // rows[i].getElementsByTagName("TD")[6].innerHTML=rows[i+1].getElementsByTagName("TD")[6].innerHTML.
-      // // rows[i+1].getElementsByTagName("TD")[6].innerHTML=tempStorage
-
-      console.log(i+1,rows[i+1].getElementsByTagName("TD")[6].innerHTML);
 
       [employeeDetails[i],employeeDetails[i-1]]=[employeeDetails[i-1],employeeDetails[i]]
-      rows[i].getElementsByTagName("TD")[6].innerHTML=`<button class="buttonStyle actionButton" onclick="deleteEmployee(${i-1})"><i class="material-icons">delete</i>${i-1}</button><button class="buttonStyle actionButton" onclick="viewEmployee(${i-1})"><i class="material-icons">visibility</i>${i-1}</button>`
-      rows[i+1].getElementsByTagName("TD")[6].innerHTML=`<button class="buttonStyle actionButton" onclick="deleteEmployee(${i})"><i class="material-icons">delete</i>${i}</button><button class="buttonStyle actionButton" onclick="viewEmployee(${i})"><i class="material-icons">visibility</i>${i}</button>`
+      rows[i].getElementsByTagName("TD")[6].innerHTML=`<button class="buttonStyle actionButton" onclick="deleteEmployee(${i-1})"><i class="material-icons">delete</i>${i-1}</button> <button class="buttonStyle actionButton" onclick="viewEmployeeDetails(${i-1})"><i class="material-icons">visibility</i>${i-1}</button>`
+      rows[i+1].getElementsByTagName("TD")[6].innerHTML=`<button class="buttonStyle actionButton" onclick="deleteEmployee(${i})"><i class="material-icons">delete</i>${i}</button> <button class="buttonStyle actionButton" onclick="viewEmployeeDetails(${i})"><i class="material-icons">visibility</i>${i}</button>`
 
       switching = true;
       flag=1;      
