@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/homeStyle.css">
+    <title>HR Management App</title>
+</head>
+<body>
+    <header class="flexbox">
+        <!-- <strong>HR Management App</strong> -->
+        <img src="" alt="Logo">
+        <img src="" alt="Menu icon">
+    </header>
+    <main class="flexbox">
+        <div id="tableOperations" class="flexbox">
+            <button class="buttonStyle"><strong>Add employee</strong></button>
+        </div>
+        <table id="employeeTable">
+            <thead>
+                <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->  
+                 <th onclick="sortTable(0)">Employee ID</th>
+                 <th onclick="sortTable(1)">Employee Name</th>
+                 <th onclick="sortTable(2)">Department</th>
+                 <th onclick="sortTable(3)">Designation</th>
+                 <th onclick="sortTable(4)">Salary</th>
+                 <th>Skills</th>
+            </thead>
+            <tbody id="tableBody">
+            </tbody>
+        </table>
+    </main>
+    <script src="script/homeScript.js"></script>
+    <script src="script/sort.js"></script>
+</body>
+</html>
