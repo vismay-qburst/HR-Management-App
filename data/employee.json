@@ -9,7 +9,7 @@
         "designation":"Project manager",
         "experience":"30",
         "salary":"10000000",
-        "skills":[]
+        "skills":[1,2]
     },
     {
         "empID":"102",
@@ -21,7 +21,7 @@
         "designation":"Senior engineer",
         "experience":"10",
         "salary":"5000000",
-        "skills":[]
+        "skills":[1,5,6]
     },
     {
         "empID":"201",
@@ -33,7 +33,7 @@
         "designation":"Senior engineer",
         "experience":"5",
         "salary":"500000",
-        "skills":[]
+        "skills":[4]
     },
     {
         "empID":"103",
@@ -45,6 +45,6 @@
         "designation":"Architect",
         "experience":"25",
         "salary":"8000000",
-        "skills":[]
+        "skills":[1,2,8,9]
     }
 ]

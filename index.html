@@ -16,32 +16,46 @@
     </header>
     <main class="flexbox">
         <div id="tableOperations" class="flexbox">
+            <!-- <div class="dropdown">
+                <input class="dropdownMenu" readonly="true" onclick="myFunction()" value="Filter..">
+                <div id="myDropdown" class="dropdown-content">
+                  <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+                </div>
+            </div> -->
             <button id="addEmployeeButton" class="buttonStyle"><strong>Add employee</strong></button>
             <div id="addEmployeeOverlay" class="modal">
                 <div id="addEmployeeModal" class="modalContent">
                     <span class="close">&times;</span>
                     <h2 class="heading">Add employee</h2>
                     <div class="formContainer">
-                    <label class="modalLabel" for="empID">Employee ID: </label>
-                    <input type="text" id="empID">
-                    <label class="modalLabel" for="empName">Employee Name: </label>
-                    <input type="text" id="empName">
-                    <label class="modalLabel" for="age">Age: </label>
-                    <input type="text" id="age">
-                    <label class="modalLabel" for="contactNumber">Contact number: </label>
-                    <input type="text" id="contactNumber">
-                    <label class="modalLabel" for="emailID">E-mail ID: </label>
-                    <input type="text" id="emailID">
-                    <label class="modalLabel" for="department">Department: </label>
-                    <input type="text" id="department">
-                    <label class="modalLabel" for="designation">Designation: </label>
-                    <input type="text" id="designation">
-                    <label class="modalLabel" for="experience">Experience(in years): </label>
-                    <input type="text" id="experience">
-                    <label class="modalLabel" for="salary">Salary: </label>
-                    <input type="text" id="salary">
+                        <label class="modalLabel" for="empID">Employee ID: </label>
+                        <input type="text" id="empID" required>
+                        <label class="modalLabel" for="empName">Employee Name: </label>
+                        <input type="text" id="empName">
+                        <label class="modalLabel" for="age">Age: </label>
+                        <input type="text" id="age">
+                        <label class="modalLabel" for="contactNumber">Contact number: </label>
+                        <input type="text" id="contactNumber">
+                        <label class="modalLabel" for="emailID">E-mail ID: </label>
+                        <input type="text" id="emailID">
+                        <label class="modalLabel" for="department">Department: </label>
+                        <input type="text" id="department">
+                        <label class="modalLabel" for="designation">Designation: </label>
+                        <input type="text" id="designation">
+                        <label class="modalLabel" for="experience">Experience(in years): </label>
+                        <input type="text" id="experience">
+                        <label class="modalLabel" for="salary">Salary: </label>
+                        <input type="text" id="salary">
+                        <label class="modalLabel" for="skills">Skills: </label>
+                        <div class="dropdown" id="list1" onclick="openDropDown()">
+                            <input id="addModalDropdown" class="dropdownMenu" readonly="true">
+                            <div id="addSkills" class="dropdown-content">
+                                <ul class="skillList items">
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div class="modalButtonContainer flexbox">
+                    <div id="addModalButton" class="modalButtonContainer flexbox">
                         <button class="buttonStyle" onclick="addEmployee()"><strong>Add employee</strong></button>
                     </div>
                     <!-- <button class="buttonStyle modalButton" onclick="addEmployee()"><strong>Add employee</strong></button> -->
@@ -75,11 +89,11 @@
         <table id="employeeTable">
             <thead>
                 <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->  
-                 <th onclick="sortTable(0)">Employee ID</th>
-                 <th onclick="sortTable(1)">Employee Name</th>
-                 <th onclick="sortTable(2)">Department</th>
-                 <th onclick="sortTable(3)">Designation</th>
-                 <th onclick="sortTable(4)">Salary</th>
+                 <th class="sortableColumn" onclick="sortTable(0)">Employee ID</th>
+                 <th class="sortableColumn" onclick="sortTable(1)">Employee Name</th>
+                 <th class="sortableColumn" onclick="sortTable(2)">Department</th>
+                 <th class="sortableColumn" onclick="sortTable(3)">Designation</th>
+                 <th class="sortableColumn" onclick="sortTable(4)">Salary</th>
                  <th>Skills</th>
                  <th>Actions</th>
             </thead>

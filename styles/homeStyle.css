@@ -21,20 +21,27 @@ main {
 
 th {
     text-align: left;
-    cursor: pointer;
     background-color: #89c5fa;
     padding: 16px;
 }
-
+.sortableColumn{
+    cursor: pointer;
+}
 td {
     background-color: #c2dcf3;
     padding: 12px;
+    max-width: 120px;
+    overflow-wrap: break-word;
 }
 
 #tableOperations {
     width: 80%;
     padding: 2.5em 1em;
     /* justify-content: flex-end; */
+}
+
+#addEmployeeButton{
+    margin-left: auto;
 }
 
 .buttonStyle {
@@ -96,7 +103,8 @@ td {
     width: 65%;
     height: 300px;
     background-color: #fefefe;
-    padding: 20px;
+    padding: 40px 20px;
+    position: relative;
 }
 .formContainer{
     width: 90%;
@@ -124,6 +132,12 @@ td {
     padding: 20px 0;
     justify-content: center;
     gap: 4em;
+
+}
+#addModalButton{
+    position: absolute;
+    bottom: 0.5em;
+    left: 42%;
 }
 .actionButton{
     width: 60px;
@@ -134,4 +148,43 @@ td {
     background-color: #cccccc;
     color: #555555;
     cursor: default;
+}
+.tableButtons{
+    gap: 5px;
+}
+
+
+input{
+    max-height: 15px;
+}
+.skillList li{
+    list-style: none;
+    background-color: #fefefe;   
+}
+.skillList{
+    border: solid 1px #555555;
+    padding: 0;
+}
+.skillList li:hover{
+    background-color: #89c5fa;
+}
+
+.dropdown {
+    display: inline-block;
+}
+
+.dropdown .anchor:active:after {
+    right: 8px;
+    top: 21%;
+}
+
+.dropdown ul.items {
+    display: none;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+.dropdown.visible .items {
+    display: block;
 }

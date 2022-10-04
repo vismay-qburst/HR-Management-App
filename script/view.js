@@ -13,6 +13,15 @@ function viewEmployeeDetails(n)
     viewOverlay.className = 'modal showModal';
     console.log(employeeDetails[n]);
 
+    let skillArray=[]
+    for(let id of employeeDetails[n].skills)
+    {
+        employeeSkills.forEach(skillobj => {
+            if(id==skillobj.skillId)
+              skillArray.push(skillobj.skill)
+          })
+    }
+    
     edited=false
 
     let details=document.getElementById('details')
@@ -33,7 +42,9 @@ function viewEmployeeDetails(n)
     <label class="modalLabel" for="experience">Experience(in years): </label>
     <input readOnly = "true" type="text" class="readOnlyField" id="experience" value="${employeeDetails[n].experience}">
     <label class="modalLabel" for="salary">Salary: </label>
-    <input readOnly = "true" type="text" class="readOnlyField" id="salary" value="${employeeDetails[n].salary}">`
+    <input readOnly = "true" type="text" class="readOnlyField" id="salary" value="${employeeDetails[n].salary}">
+    <label class="modalLabel" for="skills">Skills: </label>
+    <input readOnly = "true" type="text" class="readOnlyField" id="skills" value="${skillArray}">`
 
 
     let editDetails = document.createElement('div')
