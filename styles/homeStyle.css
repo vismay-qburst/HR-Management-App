@@ -15,8 +15,11 @@ main {
 }
 
 #employeeTable {
-    width: 80%;
     border: solid 1px #000000;
+}
+#tableContainer{
+    height: 360px;
+    overflow-y: auto;
 }
 
 th {
@@ -35,6 +38,8 @@ td {
 }
 
 #tableOperations {
+    z-index: 1;
+    max-height: 47px;
     width: 80%;
     padding: 2.5em 1em;
     /* justify-content: flex-end; */
@@ -139,6 +144,16 @@ td {
     bottom: 0.5em;
     left: 42%;
 }
+.soloModalButton{
+    position: absolute;
+    bottom: 2.5em;
+    left: 42%;
+}
+/* #viewModalButtons{
+    position: absolute;
+    bottom: 1em;
+    left: 42%;
+} */
 .actionButton{
     width: 60px;
     padding: 10px;
@@ -187,4 +202,31 @@ input{
 
 .dropdown.visible .items {
     display: block;
+}
+
+#dropdownSelect2{
+    height: 25px;
+}
+
+.filterButton{
+    cursor: pointer;
+    border: solid 1px #555555;
+    border-radius: 5px;
+    width: 150px;
+    max-height: 25px;
+    text-align: center;
+    padding: 5px 0 0 0;
+}
+
+/* .filterButton strong{
+    font-size: 15px;
+} */
+#filterList{
+    text-align: left;
+    margin: 8px 0 0 0;
+}
+#filterButton{
+    margin: 10px 0 5px 30px;
+    padding: 8px 0;
+    width: 80px;
 }

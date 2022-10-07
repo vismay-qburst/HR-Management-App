@@ -29,8 +29,8 @@ function deleteEmployee(n)
         {
             rowArray[rowArrayIndex].getElementsByTagName("TD")[6].innerHTML=`
             <div class="flexbox tableButtons">
-            <button class="buttonStyle actionButton" onclick="deleteEmployee(${rowArrayIndex-1})"><i class="material-icons">delete</i></button>
             <button class="buttonStyle actionButton" onclick="viewEmployeeDetails(${rowArrayIndex-1})"><i class="material-icons">visibility</i>+</button>
+            <button class="buttonStyle actionButton" onclick="deleteEmployee(${rowArrayIndex-1})"><i class="material-icons">delete</i></button>
             </div>`
         }
         deleteOverlay.className = 'modal';

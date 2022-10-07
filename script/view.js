@@ -66,7 +66,15 @@ function viewEmployeeDetails(n)
     <label class="modalLabel" for="experience1">Experience(in years): </label>
     <input type="text" id="experience1" value="${employeeDetails[n].experience}">
     <label class="modalLabel" for="salary1">Salary: </label>
-    <input type="text" id="salary1" value="${employeeDetails[n].salary}">`
+    <input type="text" id="salary1" value="${employeeDetails[n].salary}">
+    <label class="modalLabel" for="skills">Skills: </label>
+    <div class="dropdown" id="list1" onclick="openDropDown(1)">
+        <input id="dropdownSelect1" class = "dropdownSelect" placeholder="Select skills" readonly="true">
+        <div id="viewSkills" class="dropdown-content">
+            <ul class="skillList items">
+            </ul>
+        </div>
+    </div>`
 
     // function test()
     // {
@@ -75,30 +83,57 @@ function viewEmployeeDetails(n)
     //     viewModal.replaceChild(details,editDetails) 
     // }
 
-    editButton.onclick = function(){
+    editButton.onclick = function(){ 
         viewModal.replaceChild(editDetails,details)
         edited=true
+        skillList = Array.from(document.getElementsByClassName('skillList'))
+        for(let skillObj of employeeSkills)
+        {
+            let newSkill=document.createElement('li')
+            newSkill.innerHTML=`<span><input type="checkbox" id="edit${skillObj.skillId}"/></span><label for="edit${skillObj.skillId}">${skillObj.skill}</label>`
+            skillList.forEach(x=>x.appendChild(newSkill))
+        }
+        okButton.classList.add('soloModalButton') 
         document.getElementById('viewModalButtons').removeChild(editButton)
     }
-    okButton.onclick = function () {    
-        let rowArray=table.rows    
+    okButton.onclick = function () { 
+        viewOverlay.className = 'modal';   
+        let rowArray=table.rows
+        let editedSkillIDs=Array.from(skillList[2].getElementsByTagName('INPUT')).filter(ch => ch.checked).map(inputElement => inputElement.id)    
         if(edited)
         {   
             for(let key in employeeDetails[n])
             {
                 if(key=="skills")
+                {
+                    // employeeDetails[n]["skills"]=editedSkillIDs
                     continue
+                }
                 employeeDetails[n][key]=document.getElementById(`${key}1`).value
             }
+            employeeDetails[n]["skills"]=[]
+            let editedSkillArray = []
+            for (let id of editedSkillIDs) {
+                employeeSkills.forEach(skillobj => {
+                    if (id == `edit${skillobj.skillId}`)
+                    {
+                        employeeDetails[n]["skills"].push(skillobj.skillId)
+                        editedSkillArray.push(skillobj.skill)
+                    }
+                })
+            }
+            console.log(editedSkillArray);
+            skillArray = editedSkillArray
             viewModal.replaceChild(details,editDetails)
+            okButton.classList.remove('soloModalButton') 
             document.getElementById('viewModalButtons').insertBefore(editButton,okButton)
             rowArray[n+1].getElementsByTagName('TD')[0].innerHTML=Number(employeeDetails[n]['empID'])
             rowArray[n+1].getElementsByTagName('TD')[1].innerHTML=employeeDetails[n]['empName']
             rowArray[n+1].getElementsByTagName('TD')[2].innerHTML=employeeDetails[n]['department']
             rowArray[n+1].getElementsByTagName('TD')[3].innerHTML=employeeDetails[n]['designation']
             rowArray[n+1].getElementsByTagName('TD')[4].innerHTML=Number(employeeDetails[n]['salary'])
-        }
-        
+            rowArray[n+1].getElementsByTagName('TD')[5].innerHTML=editedSkillArray
+        }       
         console.log(employeeDetails);
         viewOverlay.className = 'modal';
     }
@@ -107,6 +142,7 @@ function viewEmployeeDetails(n)
         if(edited)
         {
             viewModal.replaceChild(details,editDetails)
+            okButton.classList.remove('soloModalButton')
             document.getElementById('viewModalButtons').insertBefore(editButton,okButton)
         }
     }
@@ -115,6 +151,7 @@ function viewEmployeeDetails(n)
             viewOverlay.className = 'modal';
             if(edited)
                 viewModal.replaceChild(details,editDetails)
+                okButton.classList.remove('soloModalButton')
                 document.getElementById('viewModalButtons').insertBefore(editButton,okButton)
         }
     }

@@ -16,12 +16,15 @@
     </header>
     <main class="flexbox">
         <div id="tableOperations" class="flexbox">
-            <!-- <div class="dropdown">
-                <input class="dropdownMenu" readonly="true" onclick="myFunction()" value="Filter..">
-                <div id="myDropdown" class="dropdown-content">
-                  <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+            <!-- <label for="list2">Filter Table:  </label> -->
+            <div class="dropdown filterButton" id="list2" onclick="openDropDown(2)">
+                Filter
+                <div id="filterList" class="dropdown-content">
+                    <ul class="skillList items">
+                        <li id="filterMenuButton"><button class="buttonStyle" id="filterButton"><strong>Filter</strong></button></li>
+                    </ul>
                 </div>
-            </div> -->
+            </div>
             <button id="addEmployeeButton" class="buttonStyle"><strong>Add employee</strong></button>
             <div id="addEmployeeOverlay" class="modal">
                 <div id="addEmployeeModal" class="modalContent">
@@ -47,8 +50,8 @@
                         <label class="modalLabel" for="salary">Salary: </label>
                         <input type="text" id="salary">
                         <label class="modalLabel" for="skills">Skills: </label>
-                        <div class="dropdown" id="list1" onclick="openDropDown()">
-                            <input id="addModalDropdown" class="dropdownMenu" readonly="true">
+                        <div class="dropdown" id="list0" onclick="openDropDown(0)">
+                            <input id="dropdownSelect0" class="dropdownSelect" placeholder="Select skills" readonly="true">
                             <div id="addSkills" class="dropdown-content">
                                 <ul class="skillList items">
                                 </ul>
@@ -86,26 +89,29 @@
                 </div>
             </div>
         </div>
-        <table id="employeeTable">
-            <thead>
-                <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->  
-                 <th class="sortableColumn" onclick="sortTable(0)">Employee ID</th>
-                 <th class="sortableColumn" onclick="sortTable(1)">Employee Name</th>
-                 <th class="sortableColumn" onclick="sortTable(2)">Department</th>
-                 <th class="sortableColumn" onclick="sortTable(3)">Designation</th>
-                 <th class="sortableColumn" onclick="sortTable(4)">Salary</th>
-                 <th>Skills</th>
-                 <th>Actions</th>
-            </thead>
-            <tbody id="tableBody">
-            </tbody>
-        </table>
+        <div id="tableContainer">
+            <table id="employeeTable">
+                <thead>
+                    <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->  
+                     <th class="sortableColumn" onclick="sortTable(0)">Employee ID</th>
+                     <th class="sortableColumn" onclick="sortTable(1)">Employee Name</th>
+                     <th class="sortableColumn" onclick="sortTable(2)">Department</th>
+                     <th class="sortableColumn" onclick="sortTable(3)">Designation</th>
+                     <th class="sortableColumn" onclick="sortTable(4)">Salary</th>
+                     <th>Skills</th>
+                     <th>Actions</th>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
     </main>
     <script src="script/homeScript.js"></script>
     <script src="script/sort.js"></script>
     <script src="script/add.js"></script>
     <script src="script/remove.js"></script>
     <script src="script/view.js"></script>
+    <script src="script/filter.js"></script>
 </body>
 </html>
 

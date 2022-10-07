@@ -1,11 +1,20 @@
 let flag = 0
 let employeeDetails = []
 let employeeSkills = []
+
+let tableContent = document.getElementById('tableBody')
+
+let skillList = Array.from(document.getElementsByClassName('skillList'))
+let filterList = skillList[0]
+let addSkillList = skillList[1]
+let filterButton = document.getElementById('filterMenuButton')
+console.log(addSkillList);
+
 let getData = () => {
     fetch("../data/employee.json")
         .then(res => res.json())
         .then(obj => {
-            let tableContent = document.getElementById('tableBody')
+            
             obj.forEach((item, index) => {
                 employeeDetails[index] = item
                 injectData(employeeDetails,tableContent, index)
@@ -44,8 +53,8 @@ function injectData(employeeDetails,tableContent,index)
     <td>${employeeDetails[index].designation}</td>
     <td>${Number(employeeDetails[index].salary)}</td>
     <td>${skillArray}</td>
-    <td><div class="flexbox tableButtons"><button class="buttonStyle actionButton" onclick="deleteEmployee(${index})"><i class="material-icons">delete</i></button>
-    <button class="buttonStyle actionButton" onclick="viewEmployeeDetails(${index})"><i class="material-icons">visibility</i>+</button></div></td>`
+    <td><div class="flexbox tableButtons"><button class="buttonStyle actionButton" onclick="viewEmployeeDetails(${index})"><i class="material-icons">visibility</i>+</button>
+    <button class="buttonStyle actionButton" onclick="deleteEmployee(${index})"><i class="material-icons">delete</i></button></div></td>`
     tableContent.appendChild(newRow) 
     
     // console.log(employeeSkills);
@@ -77,24 +86,43 @@ document.onload = setTimeout(function(){
 for(let skillObj of employeeSkills)
 {
     let newSkill=document.createElement('li')
-    newSkill.innerHTML=`<span><input type="checkbox" id="${skillObj.skillId}"/></span><label for="${skillObj.skillId}">${skillObj.skill}</label>`
-    skillList.appendChild(newSkill)
+    newSkill.innerHTML=`<span><input type="checkbox" id="filter${skillObj.skillId}"/></span><label for="filter${skillObj.skillId}">${skillObj.skill}</label>`
+    // skillList.forEach(x=>x.appendChild(newSkill))
+    filterList.insertBefore(newSkill,filterButton)
 }  
 },100)
+document.onload = setTimeout(function(){
+    for(let skillObj of employeeSkills)
+    {
+        let newSkill=document.createElement('li')
+        newSkill.innerHTML=`<span><input type="checkbox" id="add${skillObj.skillId}"/></span><label for="add${skillObj.skillId}">${skillObj.skill}</label>`
+        // skillList.forEach(x=>x.appendChild(newSkill))
+        addSkillList.appendChild(newSkill)
+    }  
+    },101)
 
-function openDropDown() {
-    let checkList = document.getElementById('list1');
-    if (checkList.classList.contains('visible'))
-        checkList.classList.remove('visible');
-    else
-        checkList.classList.add('visible');
-    document.addEventListener("click",(event) => {
-        if (event.target.tagName!=="INPUT" && checkList.classList.contains('visible'))
+let checkList
+
+function openDropDown(n) {
+    checkList = document.getElementById(`list${n}`)
+    // document.getElementById(`dropdownSelect${n}`).placeholder=""
+    if(checkList.classList.contains('visible') && event.target.classList.contains('dropdown'))
+    {
+        checkList.classList.remove('visible')
+        return
+    }
+    checkList.classList.add('visible')
+}
+
+document.addEventListener("click",(event) => {
+    // console.log(checkList);
+    if ((event.target.tagName!=='LI' && event.target.parentNode.tagName!=='LI' && event.target.parentNode.parentNode.tagName!=='LI') && !(event.target.classList.contains("dropdownSelect")) && !(event.target.classList.contains("dropdown")) && checkList.classList.contains('visible'))
+        {
+            // console.log(event.target);
             checkList.classList.remove('visible');
-    })
-}
+        }
+})
 
-document.onclick = function(event){
-    console.log(event.target);
-}
-
+// document.onclick = function(event){
+//     console.log(event.target);
+// }

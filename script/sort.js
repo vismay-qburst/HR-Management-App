@@ -35,8 +35,8 @@ function sortTable(columnIndex)
       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
 
       [employeeDetails[i],employeeDetails[i-1]]=[employeeDetails[i-1],employeeDetails[i]]
-      rows[i].getElementsByTagName("TD")[6].innerHTML=`<div class="flexbox tableButtons"><button class="buttonStyle actionButton" onclick="deleteEmployee(${i-1})"><i class="material-icons">delete</i></button> <button class="buttonStyle actionButton" onclick="viewEmployeeDetails(${i-1})"><i class="material-icons">visibility</i>+</button></div>`
-      rows[i+1].getElementsByTagName("TD")[6].innerHTML=`<div class="flexbox tableButtons"><button class="buttonStyle actionButton" onclick="deleteEmployee(${i})"><i class="material-icons">delete</i></button> <button class="buttonStyle actionButton" onclick="viewEmployeeDetails(${i})"><i class="material-icons">visibility</i>+</button></div>`
+      rows[i].getElementsByTagName("TD")[6].innerHTML=`<div class="flexbox tableButtons"><button class="buttonStyle actionButton" onclick="viewEmployeeDetails(${i-1})"><i class="material-icons">visibility</i>+</button><button class="buttonStyle actionButton" onclick="deleteEmployee(${i-1})"><i class="material-icons">delete</i></button> </div>`
+      rows[i+1].getElementsByTagName("TD")[6].innerHTML=`<div class="flexbox tableButtons"><button class="buttonStyle actionButton" onclick="viewEmployeeDetails(${i})"><i class="material-icons">visibility</i>+</button><button class="buttonStyle actionButton" onclick="deleteEmployee(${i})"><i class="material-icons">delete</i></button> </div>`
       switching = true;
       flag=1;      
     } 
