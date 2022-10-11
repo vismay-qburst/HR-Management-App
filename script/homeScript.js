@@ -1,7 +1,7 @@
 let flag = 0
 let employeeDetails = []
 let getData = () => {
-    fetch("data/employee.json")
+    fetch("HR-Management-App/data/employee.json")
         .then(res => res.json())
         .then(obj => {
             let tableContent = document.getElementById('tableBody')
