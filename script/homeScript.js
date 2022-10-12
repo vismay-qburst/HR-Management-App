@@ -20,7 +20,7 @@ let getData = () => {
         })
 }
 let getSkills = () => {
-    fetch("../data/skills.json")
+    fetch("data/skills.json")
     .then(res => res.json())
     .then(obj => {
         obj.forEach((item, index) => {
