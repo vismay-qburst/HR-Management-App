@@ -6,13 +6,10 @@ function viewEmployeeDetails(n)
     let heading=viewModal.getElementsByTagName('H2')[0]
     let okButton = document.getElementById('okButton')
     let editButton = document.getElementById('editButton')
-    let table=document.getElementById('employeeTable')
 
-    // console.log(employeeDetails);
+
     heading.innerHTML=`Employee#${employeeDetails[n].empID} - ${employeeDetails[n].empName}`
     viewOverlay.className = 'modal showModal';
-    console.log(employeeDetails[n]);
-
     let skillArray=[]
     for(let id of employeeDetails[n].skills)
     {
@@ -49,9 +46,9 @@ function viewEmployeeDetails(n)
 
     let editDetails = document.createElement('div')
     editDetails.className='formContainer'
-    editDetails.innerHTML=`<label class="modalLabel" for="empID1">Employee ID: </label>
+    editDetails.innerHTML=`<label class="modalLabel requiredField" for="empID1">Employee ID: </label>
     <input type="text" id="empID1" value="${employeeDetails[n].empID}">
-    <label class="modalLabel" for="empName1">Employee Name: </label>
+    <label class="modalLabel requiredField" for="empName1">Employee Name: </label>
     <input type="text" id="empName1" value="${employeeDetails[n].empName}">
     <label class="modalLabel" for="age1">Age: </label>
     <input type="text" id="age1" value="${employeeDetails[n].age}">
@@ -59,15 +56,15 @@ function viewEmployeeDetails(n)
     <input type="text" id="contactNumber1" value="${employeeDetails[n].contactNumber}">
     <label class="modalLabel" for="emailID1">E-mail ID: </label>
     <input type="text" id="emailID1" value="${employeeDetails[n].emailID}"> 
-    <label class="modalLabel" for="department1">Department: </label>
+    <label class="modalLabel requiredField" for="department1">Department: </label>
     <input type="text" id="department1" value="${employeeDetails[n].department}">
-    <label class="modalLabel" for="designation1">Designation: </label>
+    <label class="modalLabel requiredField" for="designation1">Designation: </label>
     <input type="text" id="designation1" value="${employeeDetails[n].designation}">
     <label class="modalLabel" for="experience1">Experience(in years): </label>
     <input type="text" id="experience1" value="${employeeDetails[n].experience}">
-    <label class="modalLabel" for="salary1">Salary: </label>
+    <label class="modalLabel requiredField" for="salary1">Salary: </label>
     <input type="text" id="salary1" value="${employeeDetails[n].salary}">
-    <label class="modalLabel" for="skills">Skills: </label>
+    <label class="modalLabel requiredField" for="skills">Skills: </label>
     <div class="dropdown" id="list1" onclick="openDropDown(1)">
         <input id="dropdownSelect1" class = "dropdownSelect" placeholder="Select skills" readonly="true">
         <div id="viewSkills" class="dropdown-content">
@@ -75,13 +72,6 @@ function viewEmployeeDetails(n)
             </ul>
         </div>
     </div>`
-
-    // function test()
-    // {
-    //     viewOverlay.className = 'modal';
-    //     if(edited)
-    //     viewModal.replaceChild(details,editDetails) 
-    // }
 
     editButton.onclick = function(){ 
         viewModal.replaceChild(editDetails,details)
@@ -97,16 +87,26 @@ function viewEmployeeDetails(n)
         document.getElementById('viewModalButtons').removeChild(editButton)
     }
     okButton.onclick = function () { 
-        viewOverlay.className = 'modal';   
         let rowArray=table.rows
+        let mandatoryFields = ["empID", "empName", "department", "designation", "salary"]
+        let emptyFlag = 0
+        for (let key of mandatoryFields) {
+            if (!document.getElementById(`${key}1`).value)
+                emptyFlag = 1
+        }
         let editedSkillIDs=Array.from(skillList[2].getElementsByTagName('INPUT')).filter(ch => ch.checked).map(inputElement => inputElement.id)    
+        if(editedSkillIDs.length==0)
+            emptyFlag=1
+        if(emptyFlag==1)
+            alert("You have left a mandatory field empty")
+        else
+        {
         if(edited)
         {   
             for(let key in employeeDetails[n])
             {
                 if(key=="skills")
                 {
-                    // employeeDetails[n]["skills"]=editedSkillIDs
                     continue
                 }
                 employeeDetails[n][key]=document.getElementById(`${key}1`).value
@@ -122,7 +122,6 @@ function viewEmployeeDetails(n)
                     }
                 })
             }
-            console.log(editedSkillArray);
             skillArray = editedSkillArray
             viewModal.replaceChild(details,editDetails)
             okButton.classList.remove('soloModalButton') 
@@ -134,8 +133,8 @@ function viewEmployeeDetails(n)
             rowArray[n+1].getElementsByTagName('TD')[4].innerHTML=Number(employeeDetails[n]['salary'])
             rowArray[n+1].getElementsByTagName('TD')[5].innerHTML=editedSkillArray
         }       
-        console.log(employeeDetails);
         viewOverlay.className = 'modal';
+    }
     }
     closeButton.onclick = function () {
         viewOverlay.className = 'modal';
@@ -155,4 +154,9 @@ function viewEmployeeDetails(n)
                 document.getElementById('viewModalButtons').insertBefore(editButton,okButton)
         }
     }
+}
+
+function updateSkillField()
+{
+
 }

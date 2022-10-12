@@ -1,10 +1,7 @@
-// let filterButton = document.getElementById('filterButton')
-
 filterButton.addEventListener('click',(event => {
     let filterSkillIDs=Array.from(skillList[0].getElementsByTagName('INPUT')).filter(ch => ch.checked).map(inputElement => inputElement.id)
     if(filterSkillIDs.length==0)
     {
-        console.log(employeeDetails);
         tableContent.innerHTML=""
         for(let index in employeeDetails)
         {
@@ -33,31 +30,24 @@ filterButton.addEventListener('click',(event => {
         employeeDetails=[]
         tableContent.innerHTML=""
         let filterIDs = []
-        // let filterSkillArray = []
         for (let id of filterSkillIDs) {
             employeeSkills.forEach(skillobj => {
                 if (id == `filter${skillobj.skillId}`) {
                     filterIDs.push(skillobj.skillId)
-                    // filterSkillArray.push(skillobj.skill)
                 }
             })
         }
-        console.log(employeeDetailsCopy);
         for(let employee of employeeDetailsCopy)
         {
             let skillFlag=0
-            // console.log(employee["skills"]);
             for(let filterSkill of filterIDs)
             {
-                // console.log(employee["skills"]);
-                // console.log(filterSkill);
                 if(employee["skills"].includes(filterSkill))
                     skillFlag++
             }
             if(skillFlag===filterIDs.length)
                 employeeDetails.push(employee)
         }
-        console.log(employeeDetails);
         for(let filteredIndex in employeeDetails)
         {
             let newSkillArray=[]

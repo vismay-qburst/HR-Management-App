@@ -6,19 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/homeStyle.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>HR Management App</title>
 </head>
 <body>
     <header class="flexbox">
-        <!-- <strong>HR Management App</strong> -->
-        <img src="" alt="Logo">
-        <img src="" alt="Menu icon">
+        <img src="images/logo1.png" alt="Logo">
+        <img id="menuIcon" src="images/menuIcon.png" alt="Menu icon">
     </header>
     <main class="flexbox">
         <div id="tableOperations" class="flexbox">
-            <!-- <label for="list2">Filter Table:  </label> -->
-            <div class="dropdown filterButton" id="list2" onclick="openDropDown(2)">
+            <div class="dropdown filterTable" id="list2" onclick="openDropDown(2)">
                 Filter
+                <i class="fa fa-filter"></i>
                 <div id="filterList" class="dropdown-content">
                     <ul class="skillList items">
                         <li id="filterMenuButton"><button class="buttonStyle" id="filterButton"><strong>Filter</strong></button></li>
@@ -31,9 +31,9 @@
                     <span class="close">&times;</span>
                     <h2 class="heading">Add employee</h2>
                     <div class="formContainer">
-                        <label class="modalLabel" for="empID">Employee ID: </label>
-                        <input type="text" id="empID" required>
-                        <label class="modalLabel" for="empName">Employee Name: </label>
+                        <label class="modalLabel requiredField" for="empID">Employee ID: </label>
+                        <input type="text" id="empID">
+                        <label class="modalLabel requiredField" for="empName">Employee Name: </label>
                         <input type="text" id="empName">
                         <label class="modalLabel" for="age">Age: </label>
                         <input type="text" id="age">
@@ -41,15 +41,15 @@
                         <input type="text" id="contactNumber">
                         <label class="modalLabel" for="emailID">E-mail ID: </label>
                         <input type="text" id="emailID">
-                        <label class="modalLabel" for="department">Department: </label>
+                        <label class="modalLabel requiredField" for="department">Department: </label>
                         <input type="text" id="department">
-                        <label class="modalLabel" for="designation">Designation: </label>
+                        <label class="modalLabel requiredField" for="designation">Designation: </label>
                         <input type="text" id="designation">
                         <label class="modalLabel" for="experience">Experience(in years): </label>
                         <input type="text" id="experience">
-                        <label class="modalLabel" for="salary">Salary: </label>
+                        <label class="modalLabel requiredField" for="salary">Salary: </label>
                         <input type="text" id="salary">
-                        <label class="modalLabel" for="skills">Skills: </label>
+                        <label class="modalLabel requiredField" for="skills">Skills: </label>
                         <div class="dropdown" id="list0" onclick="openDropDown(0)">
                             <input id="dropdownSelect0" class="dropdownSelect" placeholder="Select skills" readonly="true">
                             <div id="addSkills" class="dropdown-content">
@@ -61,7 +61,6 @@
                     <div id="addModalButton" class="modalButtonContainer flexbox">
                         <button class="buttonStyle" onclick="addEmployee()"><strong>Add employee</strong></button>
                     </div>
-                    <!-- <button class="buttonStyle modalButton" onclick="addEmployee()"><strong>Add employee</strong></button> -->
                 </div>
             </div>
         </div>
@@ -92,7 +91,6 @@
         <div id="tableContainer">
             <table id="employeeTable">
                 <thead>
-                    <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->  
                      <th class="sortableColumn" onclick="sortTable(0)">Employee ID</th>
                      <th class="sortableColumn" onclick="sortTable(1)">Employee Name</th>
                      <th class="sortableColumn" onclick="sortTable(2)">Department</th>
@@ -106,6 +104,11 @@
             </table>
         </div>
     </main>
+    <footer class="flexbox footer">
+        <section id="copyright" class="container flexbox">
+            <p id="copyrightText">Copyright &#169; 2022 Sample Company, All Rights Reserved</p>
+        </section>
+    </footer>
     <script src="script/homeScript.js"></script>
     <script src="script/sort.js"></script>
     <script src="script/add.js"></script>
@@ -115,4 +118,3 @@
 </body>
 </html>
 
-<!-- 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 -->

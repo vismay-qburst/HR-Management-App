@@ -16,14 +16,24 @@ window.onclick = function(event) {
 
 function addEmployee()
 {
+  let mandatoryFields=["empID","empName","department","designation","salary"]
+  let emptyFlag=0
+  for(let key of mandatoryFields)
+  {
+    if(!document.getElementById(`${key}`).value)
+      emptyFlag=1
+  }
   let newSkillIDs=Array.from(skillList[1].getElementsByTagName('INPUT')).filter(ch => ch.checked).map(inputElement => inputElement.id)
-  console.log(newSkillIDs);
-  flag = 1
+  if(newSkillIDs.length==0)
+    emptyFlag=1
+  if(emptyFlag==1)
+    alert("You have left a mandatory field empty")
+  else
+  {
   newObj = {}
   for (let key in employeeDetails[0]) {
     if (key == "skills")
     {  
-      // newObj["skills"] = newSkillIDs
       continue
     }
     newObj[`${key}`] = document.getElementById(`${key}`).value
@@ -42,9 +52,7 @@ function addEmployee()
       }
     })
   }
-  console.log(newSkillArray);
-  console.log(employeeDetails);
-  let table = document.getElementById('employeeTable')
+  
   let newRow = table.insertRow()
   newRow.insertCell().innerHTML = Number(employeeDetails[lastIndex]['empID'])
   newRow.insertCell().innerHTML = employeeDetails[lastIndex]['empName']
@@ -55,4 +63,5 @@ function addEmployee()
   newRow.insertCell().innerHTML = `<div class="flexbox tableButtons"><button class="buttonStyle actionButton" onclick="viewEmployeeDetails(${lastIndex})"><i class="material-icons">visibility</i>+</button>
   <button class="buttonStyle actionButton" onclick="deleteEmployee(${lastIndex})"><i class="material-icons">delete</i></button></td></div>`
   addOverlay.className = 'modal';
+}
 }

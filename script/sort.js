@@ -48,5 +48,4 @@ function sortTable(columnIndex)
       }
     }
   }
-  console.log(employeeDetails);
 }

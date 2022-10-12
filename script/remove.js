@@ -1,13 +1,11 @@
 function deleteEmployee(n)
 {
-    console.log(employeeSkills);
     let deleteOverlay=document.getElementById('deleteEmployeeOverlay')
     let deleteModal=document.getElementById('deleteEmployeeModal')
     let closeButton = document.getElementsByClassName("close")[1];
     let deleteConfirmButton = document.getElementById('deleteConfirmButton')
     let cancelButton = document.getElementById('cancelButton')
     let heading=deleteModal.getElementsByTagName('H2')[0]
-    // console.log(employeeDetails);
     heading.innerHTML=`Delete Employee#${employeeDetails[n].empID} - ${employeeDetails[n].empName}?`
     deleteOverlay.className = 'modal showModal';
     closeButton.onclick = function () {
@@ -21,7 +19,6 @@ function deleteEmployee(n)
             deleteOverlay.className = 'modal';
         }
     }
-    let table=document.getElementById('employeeTable')
     deleteConfirmButton.onclick = function() {
         table.deleteRow(n+1)
         let rowArray=table.rows
@@ -37,8 +34,3 @@ function deleteEmployee(n)
         employeeDetails.splice(n,1)    
     }
 }
-
-// function closeModal()
-// {
-//     deleteOverlay.className = 'modal';
-// }
