@@ -1,6 +1,41 @@
 [
     {
-        "skillId":-1,
-        "skill":""
+        "skillId":0,
+        "skill":"HTML"
+    },
+    {
+        "skillId":1,
+        "skill":"CSS"
+    },
+    {
+        "skillId":2,
+        "skill":"JavaScript"
+    },
+    {
+        "skillId":3,
+        "skill":"SQL"
+    },
+    {
+        "skillId":4,
+        "skill":"QA Testing"
+    },
+    {
+        "skillId":5,
+        "skill":"UI design"
+    },{
+        "skillId":6,
+        "skill":"Python"
+    },
+    {
+        "skillId":7,
+        "skill":"Ruby on Rails"
+    },
+    {
+        "skillId":8,
+        "skill":"React"
+    },
+    {
+        "skillId":9,
+        "skill":"Flutter"
     }
 ]
