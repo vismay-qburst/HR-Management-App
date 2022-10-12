@@ -10,7 +10,7 @@ let addSkillList = skillList[1]
 let filterButton = document.getElementById('filterMenuButton')
 
 let getData = () => {
-    fetch("../data/employee.json")
+    fetch("data/employee.json")
         .then(res => res.json())
         .then(obj => {
             obj.forEach((item, index) => {
@@ -20,7 +20,7 @@ let getData = () => {
         })
 }
 let getSkills = () => {
-    fetch("../data/skills.json")
+    fetch("data/skills.json")
     .then(res => res.json())
     .then(obj => {
         obj.forEach((item, index) => {
