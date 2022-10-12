@@ -86,6 +86,7 @@ function viewEmployeeDetails(n)
         okButton.classList.add('soloModalButton') 
         document.getElementById('viewModalButtons').removeChild(editButton)
     }
+
     okButton.onclick = function () { 
         let rowArray=table.rows
         let mandatoryFields = ["empID", "empName", "department", "designation", "salary"]
@@ -154,9 +155,4 @@ function viewEmployeeDetails(n)
                 document.getElementById('viewModalButtons').insertBefore(editButton,okButton)
         }
     }
-}
-
-function updateSkillField()
-{
-
 }
