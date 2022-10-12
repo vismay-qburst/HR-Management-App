@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>HR Management App</title>
 </head>
+
 <body>
     <header class="flexbox">
         <img src="images/logo1.png" alt="Logo">
@@ -21,7 +23,8 @@
                 <i class="fa fa-filter"></i>
                 <div id="filterList" class="dropdown-content">
                     <ul class="skillList items">
-                        <li id="filterMenuButton"><button class="buttonStyle" id="filterButton"><strong>Filter</strong></button></li>
+                        <li id="filterMenuButton"><button class="buttonStyle"
+                                id="filterButton"><strong>Filter</strong></button></li>
                     </ul>
                 </div>
             </div>
@@ -51,7 +54,8 @@
                         <input type="text" id="salary">
                         <label class="modalLabel requiredField" for="skills">Skills: </label>
                         <div class="dropdown" id="list0" onclick="openDropDown(0)">
-                            <input id="dropdownSelect0" class="dropdownSelect" placeholder="Select skills" readonly="true">
+                            <input id="dropdownSelect0" class="dropdownSelect" placeholder="Select skills"
+                                readonly="true">
                             <div id="addSkills" class="dropdown-content">
                                 <ul class="skillList items">
                                 </ul>
@@ -68,11 +72,13 @@
             <div id="deleteEmployeeModal" class="modalContent">
                 <span class="close">&times;</span>
                 <h2 class="heading">Sample header</h2>
-                <p>All data corresponding to this employee will be removed. Are you sure you want to delete this employee?</p>
+                <p>All data corresponding to this employee will be removed. Are you sure you want to delete this
+                    employee?</p>
                 <div id="deleteModalButtons" class="modalButtonContainer flexbox">
                     <button class="buttonStyle" id="deleteConfirmButton"
                         onclick="deleteEmployee(n)"><strong>Delete</strong></button>
-                    <button class="buttonStyle" id="cancelButton" onclick="closemodal()"><strong>Cancel</strong></button>
+                    <button class="buttonStyle" id="cancelButton"
+                        onclick="closemodal()"><strong>Cancel</strong></button>
                 </div>
             </div>
         </div>
@@ -91,13 +97,13 @@
         <div id="tableContainer">
             <table id="employeeTable">
                 <thead>
-                     <th class="sortableColumn" onclick="sortTable(0)">Employee ID</th>
-                     <th class="sortableColumn" onclick="sortTable(1)">Employee Name</th>
-                     <th class="sortableColumn" onclick="sortTable(2)">Department</th>
-                     <th class="sortableColumn" onclick="sortTable(3)">Designation</th>
-                     <th class="sortableColumn" onclick="sortTable(4)">Salary</th>
-                     <th>Skills</th>
-                     <th>Actions</th>
+                    <th class="sortableColumn" onclick="sortTable(0)">Employee ID</th>
+                    <th class="sortableColumn" onclick="sortTable(1)">Employee Name</th>
+                    <th class="sortableColumn" onclick="sortTable(2)">Department</th>
+                    <th class="sortableColumn" onclick="sortTable(3)">Designation</th>
+                    <th class="sortableColumn" onclick="sortTable(4)">Salary</th>
+                    <th>Skills</th>
+                    <th>Actions</th>
                 </thead>
                 <tbody id="tableBody">
                 </tbody>
@@ -116,4 +122,5 @@
     <script src="script/view.js"></script>
     <script src="script/filter.js"></script>
 </body>
+
 </html>
