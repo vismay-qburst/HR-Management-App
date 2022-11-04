@@ -1,0 +1,279 @@
+body {
+  margin: 0 auto;
+  background-color: #e0f5fa;
+  height: 100%;
+}
+
+.container{
+  padding: 500px;
+}
+
+header {
+  background-color: #a6e6ff;
+  border-bottom: solid 2px #000000;
+  padding: 2em;
+  justify-content: space-between;
+}
+
+img {
+  max-height: 45px;
+}
+
+#menuIcon {
+  max-height: 40px;
+  margin: 5px 0 0 0;
+  cursor: pointer;
+}
+
+.flexbox {
+  display: flex;
+}
+
+main {
+  padding: 1em 3em 2em;
+  flex-direction: column;
+  align-items: center;
+}
+
+#employeeTable {
+  border: solid 1px #0b9dff;
+}
+
+#tableContainer {
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+thead {
+  position: sticky;
+  top: 0
+}
+
+th,
+td {
+  outline: 2px solid #0b9dff;
+}
+
+th {
+  text-align: left;
+  background-color: #89c5fa;
+  padding: 16px;
+}
+
+.sortableColumn {
+  cursor: pointer;
+}
+
+td {
+  background-color: #c2dcf3;
+  padding: 12px;
+  max-width: 120px;
+  overflow-wrap: break-word;
+}
+
+#tableOperations {
+  z-index: 1;
+  max-height: 47px;
+  width: 80%;
+  padding: 1.5em 1em 2.5em;
+}
+
+#addEmployeeButton {
+  margin-left: auto;
+}
+
+.buttonStyle {
+  background-color: #89c5fa;
+  padding: 15px 8px;
+  border-radius: 10px;
+  border: solid 1px #000000;
+  cursor: pointer;
+  width: 110px;
+}
+
+.buttonStyle:active {
+  background-color: #61b5ff;
+}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.showModal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  width: 65%;
+  height: 300px;
+  background-color: #fefefe;
+  padding: 40px 20px;
+  position: relative;
+}
+
+.formContainer {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1em;
+  row-gap: 1em;
+}
+
+.modalLabel {
+  width: 150px;
+}
+
+.heading {
+  text-align: center;
+}
+
+.modalButton {
+  margin: 20px 0 0 40%;
+}
+
+.deleteButton {
+  padding: 5px 10px;
+}
+
+.modalContent p {
+  padding: 4em;
+}
+
+.modalButtonContainer {
+  padding: 20px 0;
+  justify-content: center;
+  gap: 4em;
+
+}
+
+#addModalButton {
+  position: absolute;
+  bottom: 0.5em;
+  left: 42%;
+}
+
+.soloModalButton {
+  position: absolute;
+  bottom: 2.5em;
+  left: 42%;
+}
+
+.actionButton {
+  width: 60px;
+  padding: 10px;
+}
+
+.readOnlyField {
+  background-color: #cccccc;
+  color: #555555;
+  cursor: default;
+}
+
+.tableButtons {
+  gap: 5px;
+}
+
+
+input {
+  max-height: 15px;
+}
+
+.skillList li {
+  list-style: none;
+  background-color: #fefefe;
+}
+
+.skillList {
+  border: solid 1px #555555;
+  padding: 0;
+}
+
+.skillList li:hover {
+  background-color: #89c5fa;
+}
+
+.dropdown {
+  display: inline-block;
+}
+
+.dropdown .anchor:active:after {
+  right: 8px;
+  top: 21%;
+}
+
+.dropdown ul.items {
+  display: none;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.dropdown.visible .items {
+  display: block;
+}
+
+#dropdownSelect2 {
+  height: 25px;
+}
+
+.filterTable {
+  cursor: pointer;
+  border: solid 1px #555555;
+  border-radius: 5px;
+  width: 150px;
+  max-height: 25px;
+  text-align: center;
+  padding: 5px 0 0 0;
+  background-color: #89c5fa;
+}
+
+#filterList {
+  text-align: left;
+  margin: 8px 0 0 0;
+}
+
+#filterButton {
+  margin: 10px 0 5px 30px;
+  padding: 8px 0;
+  width: 80px;
+}
+
+.requiredField::after {
+  content: "*";
+  color: red;
+}
+
+.footer {
+  background-color: #a6e6ff;
+  bottom: 0;
+  justify-content: center;
+  font-size: 12px;
+  position: absolute;
+  width: 100%;
+}
