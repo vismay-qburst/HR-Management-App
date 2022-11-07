@@ -19,7 +19,7 @@ img {
   max-height: 45px;
 }
 
-#menuIcon {
+.menuIcon {
   max-height: 40px;
   margin: 5px 0 0 0;
   cursor: pointer;
@@ -35,11 +35,11 @@ main {
   align-items: center;
 }
 
-#employeeTable {
+.employeeTable {
   border: solid 1px #0b9dff;
 }
 
-#tableContainer {
+.tableContainer {
   max-height: 360px;
   overflow-y: auto;
 }
@@ -71,14 +71,14 @@ td {
   overflow-wrap: break-word;
 }
 
-#tableOperations {
+.tableOperations {
   z-index: 1;
   max-height: 47px;
   width: 80%;
   padding: 1.5em 1em 2.5em;
 }
 
-#addEmployeeButton {
+.addEmployeeButton {
   margin-left: auto;
 }
 
@@ -172,7 +172,7 @@ td {
 
 }
 
-#addModalButton {
+.addModalButton {
   position: absolute;
   bottom: 0.5em;
   left: 42%;
@@ -238,7 +238,7 @@ input {
   display: block;
 }
 
-#dropdownSelect2 {
+.dropdownSelect2 {
   height: 25px;
 }
 
@@ -253,12 +253,12 @@ input {
   background-color: #89c5fa;
 }
 
-#filterList {
+.filterList {
   text-align: left;
   margin: 8px 0 0 0;
 }
 
-#filterButton {
+.filterButton {
   margin: 10px 0 5px 30px;
   padding: 8px 0;
   width: 80px;

@@ -1,0 +1,50 @@
+[
+    {
+        "empID":"101",
+        "empName":"Gandalf",
+        "age":"50",
+        "contactNumber":"12345678",
+        "emailID":"gandalf@lotr.com",
+        "department":"Front-end development",
+        "designation":"Project manager",
+        "experience":"30",
+        "salary":"10000000",
+        "skills":[1,2]
+    },
+    {
+        "empID":"102",
+        "empName":"Aragorn",
+        "age":"30",
+        "contactNumber":"123213132",
+        "emailID":"aragorn@lotr.com",
+        "department":"UI",
+        "designation":"Senior engineer",
+        "experience":"10",
+        "salary":"5000000",
+        "skills":[1,5,6]
+    },
+    {
+        "empID":"201",
+        "empName":"Thorin",
+        "age":"40",
+        "contactNumber":"987462123",
+        "emailID":"thorin@lotr.com",
+        "department":"DevOps",
+        "designation":"Senior engineer",
+        "experience":"5",
+        "salary":"500000",
+        "skills":[4]
+    },
+    {
+        "empID":"103",
+        "empName":"Legolas",
+        "age":"32",
+        "contactNumber":"4329072301",
+        "emailID":"legolas@lotr.com",
+        "department":"Business Development",
+        "designation":"Architect",
+        "experience":"25",
+        "salary":"8000000",
+        "skills":[1,2,8,9]
+    }
+]
