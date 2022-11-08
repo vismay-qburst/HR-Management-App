@@ -37,6 +37,8 @@ main {
 
 .employeeTable {
   border: solid 1px #0b9dff;
+  background-color: #c2dcf3;
+  text-align: center;
 }
 
 .tableContainer {
