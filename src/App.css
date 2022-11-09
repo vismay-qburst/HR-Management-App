@@ -8,21 +8,8 @@ body {
   padding: 500px;
 }
 
-header {
-  background-color: #a6e6ff;
-  border-bottom: solid 2px #000000;
-  padding: 2em;
-  justify-content: space-between;
-}
-
 img {
   max-height: 45px;
-}
-
-.menuIcon {
-  max-height: 40px;
-  margin: 5px 0 0 0;
-  cursor: pointer;
 }
 
 .flexbox {
@@ -271,11 +258,4 @@ input {
   color: red;
 }
 
-.footer {
-  background-color: #a6e6ff;
-  bottom: 0;
-  justify-content: center;
-  font-size: 12px;
-  position: absolute;
-  width: 100%;
-}
+

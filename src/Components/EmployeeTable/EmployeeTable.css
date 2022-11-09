@@ -1,0 +1,37 @@
+.employeeTable {
+    border: solid 1px #0b9dff;
+    background-color: #c2dcf3;
+    text-align: center;
+  }
+  
+  .tableContainer {
+    max-height: 360px;
+    overflow-y: auto;
+  }
+  
+  thead {
+    position: sticky;
+    top: 0
+  }
+  
+  th,
+  td {
+    outline: 2px solid #0b9dff;
+  }
+  
+  th {
+    text-align: left;
+    background-color: #89c5fa;
+    padding: 16px;
+  }
+  
+  .sortableColumn {
+    cursor: pointer;
+  }
+  
+  td {
+    background-color: #c2dcf3;
+    padding: 12px;
+    max-width: 120px;
+    overflow-wrap: break-word;
+  }

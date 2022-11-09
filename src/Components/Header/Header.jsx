@@ -1,17 +1,19 @@
-const CompanyLogo = ({ imagesource }) => {
+import './Header.css'
+
+const HeaderImage = ({ imagesource }) => {
     return(
-        <img src={ imagesource } alt="Logo"/>
+        imagesource.property?<img src={ imagesource.url } alt={ imagesource.alt } className={ imagesource.property }/>:<img src={ imagesource.url } alt={ imagesource.alt }/>
     )
 }
 
-const imageList=["images/logo1.png","images/menuIcon.png"]
+const imageList=[{"url":"images/logo1.png","alt":"Logo"},{"url":"images/menuIcon.png","alt":"MenuIcon", "property":"menuIcon"}]
 
 function Header()
 {
     return(
         <>
         <header className="flexbox">
-        {imageList.map(image => <CompanyLogo imagesource={image}/>)}
+        {imageList.map(image => <HeaderImage imagesource={image}/>)}
         </header>
         </>
     )

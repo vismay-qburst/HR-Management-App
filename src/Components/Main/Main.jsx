@@ -1,6 +1,4 @@
 import { useState,useEffect } from 'react';
-import EmployeeData from '../../MockAPI/EmployeeDetails';
-import Skills from '../../MockAPI/Skills';
 import EmployeeTable from '../EmployeeTable/EmployeeTable';
 import TableOperations from '../TableOperations/TableOperations';
 
@@ -9,6 +7,7 @@ export default function Main()
 {
     const [employeeDetails, setEmployeeDetails] = useState([]) 
     const [employeeSkills, setSkills] = useState([])
+    const [loader, setLoader] = useState(true)
     
     let getData = () => {
         fetch("data/employee.json")
@@ -29,7 +28,8 @@ export default function Main()
         {/* <Skills /> */}
         <TableOperations />
         <div className='tableContainer'>
-            <EmployeeTable employeeDetails={employeeDetails} skills={employeeSkills}/>
+            {employeeDetails.length?(<EmployeeTable employeeDetails={employeeDetails} skills={employeeSkills}/>):null}
+            {/* <EmployeeTable employeeDetails={employeeDetails} skills={employeeSkills}/> */}
         </div>
    </main>
   )
