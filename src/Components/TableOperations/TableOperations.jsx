@@ -1,3 +1,5 @@
+import Button from "../Button/Button";
+
 export default function TableOperations()
 {
     return (
@@ -12,16 +14,8 @@ export default function TableOperations()
                 </ul>
             </div>
         </div>
-        <button className="addEmployeeButton buttonStyle"><strong>Add employee</strong></button>
-        <div className="addEmployeeOverlay modal">
-            <div className="addEmployeeModal modalContent">
-                <span className="close">&times;</span>
-                <h2 className="heading">Add employee</h2>
-                <div className="addModalButton modalButtonContainer flexbox">
-                    <button className="buttonStyle" onclick="addEmployee()"><strong>Add employee</strong></button>
-                </div>
-            </div>
-        </div>
+        {/* <button className="addEmployeeButton buttonStyle"><strong>Add employee</strong></button> */}
+        <Button buttonClass={"addEmployeeButton buttonStyle"} buttonText={(<strong>Add employee</strong>)} onClick={()=>{alert("Click")}}/>
     </div>
     )
 }

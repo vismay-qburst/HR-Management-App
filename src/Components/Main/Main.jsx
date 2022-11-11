@@ -1,5 +1,6 @@
 import { useState,useEffect } from 'react';
 import EmployeeTable from '../EmployeeTable/EmployeeTable';
+import Modal from '../Modal/Modal';
 import TableOperations from '../TableOperations/TableOperations';
 
 
@@ -8,7 +9,7 @@ export default function Main()
     const [employeeDetails, setEmployeeDetails] = useState([]) 
     const [employeeSkills, setSkills] = useState([])
     const [loader, setLoader] = useState(true)
-    
+    // setLoader(false)
     let getData = () => {
         fetch("data/employee.json")
             .then(res => res.json())
@@ -20,16 +21,14 @@ export default function Main()
             .then(obj => {setSkills(obj)})
         getData()
     }
-    
+    const [isModalOpen, setIsModalOpen] = useState(false)
   useEffect(getSkills,[])
   return(
     <main className='flexbox'>
-        {/* <EmployeeData /> */}
-        {/* <Skills /> */}
         <TableOperations />
+        <Modal />
         <div className='tableContainer'>
             {employeeDetails.length?(<EmployeeTable employeeDetails={employeeDetails} skills={employeeSkills}/>):null}
-            {/* <EmployeeTable employeeDetails={employeeDetails} skills={employeeSkills}/> */}
         </div>
    </main>
   )
