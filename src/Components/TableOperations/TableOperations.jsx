@@ -4,7 +4,7 @@ export default function TableOperations()
 {
     return (
     <div className="tableOperations flexbox">
-        <div className="dropdown filterTable list2" onclick="openDropDown(2)">
+        <div className="dropdown filterTable list2" onClick="openDropDown(2)">
             Filter
             <i className="fa fa-filter"></i>
             <div className="filterList dropdown-content">
