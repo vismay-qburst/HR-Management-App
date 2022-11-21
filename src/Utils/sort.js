@@ -35,7 +35,7 @@ const sortTable = (keyList, employeeDetails, columnIndex) => {
             }
         }
     }
-    return [...employeeDetails]
+    return employeeDetails
 }
 
 export default sortTable

@@ -1,4 +1,7 @@
+import deleteEmployee from "../../Utils/delete"
 import sortTable from "../../Utils/sort"
+import viewEmployeeDetails from "../../Utils/view"
+
 
 const sortableColumns=["Employee ID", "Employee Name", "Department", "Designation", "Salary"]
 const unsortableColumns=["Skills", "Actions"]
@@ -36,12 +39,9 @@ const Skills = ({ skillIndices, employeeSkills }) => {
     )
 }
 
-export default function EmployeeTable({ setEmployeeDetails,employeeDetails,skills })
+export default function EmployeeTable({ setDeleteModal,setEmployeeDetails,employeeDetails,skills })
 {
-    const viewEmployeeDetails = (n) => {
-        console.log(employeeDetails[n]);
-    }
-    console.log("Rendering table");
+    console.log("Rendering table",);
     return(
         <>
             <table className="employeeTable">
@@ -56,7 +56,7 @@ export default function EmployeeTable({ setEmployeeDetails,employeeDetails,skill
                             <tr>
                                 {tableEntries.map(entry => <DataEntry emp={emp} entry={entry} />)}
                                 <Skills skillIndices={emp.skills} employeeSkills={skills}/>
-                                <td><div className="flexbox tableButtons"><button className="buttonStyle actionButton" onClick={()=>viewEmployeeDetails(index)}><i className="material-icons">visibility</i>+</button><button className="buttonStyle actionButton" onclick="deleteEmployee(${index})"><i className="material-icons">delete</i></button></div></td>
+                                <td><div className="flexbox tableButtons"><button className="buttonStyle actionButton" onClick={()=>viewEmployeeDetails(emp)}><i className="material-icons">visibility</i>+</button><button className="buttonStyle actionButton" onClick={()=>{setDeleteModal([index,true])}}><i className="material-icons">delete</i></button></div></td>
                             </tr>
                         )
                 }
