@@ -11,13 +11,13 @@ const sortTable = (keyList, employeeDetails, columnIndex) => {
             let dataElement = employeeDetails[i][key];
             let adjacentDataElement = employeeDetails[i+1][key];
             if (direction == "ascending") {
-                if ((columnIndex !== 4 && dataElement.toLowerCase() > adjacentDataElement.toLowerCase()) || (columnIndex == 4 && Number(dataElement) > Number(adjacentDataElement))) {
+                if (((columnIndex !== 4 && columnIndex!==0) && dataElement.toLowerCase() > adjacentDataElement.toLowerCase()) || ((columnIndex == 4 || columnIndex == 0) && Number(dataElement) > Number(adjacentDataElement))) {
                     shouldSwitch = true;
                     break;
                 }
             }
             else if (direction == "descending") {
-                if ((columnIndex !== 4 && dataElement.toLowerCase() < adjacentDataElement.toLowerCase()) || (columnIndex == 4 && Number(dataElement) < Number(adjacentDataElement))) {
+                if (((columnIndex !== 4 && columnIndex!==0) && dataElement.toLowerCase() < adjacentDataElement.toLowerCase()) || ((columnIndex == 4 || columnIndex == 0) && Number(dataElement) < Number(adjacentDataElement))) {
                     shouldSwitch = true;
                     break;
                 }
