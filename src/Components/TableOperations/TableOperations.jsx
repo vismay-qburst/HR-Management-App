@@ -1,7 +1,7 @@
 import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
 
-export default function TableOperations({add})
+export default function TableOperations({setActionType})
 {
     return (
     <>
@@ -16,7 +16,7 @@ export default function TableOperations({add})
                 </ul>
             </div>
         </div>
-        <Button buttonClass={"addEmployeeButton buttonStyle"} buttonText={(<strong>Add employee</strong>)} onClick={()=>{add(true)}}/>
+        <Button buttonClass={"addEmployeeButton buttonStyle"} buttonText={(<strong>Add employee</strong>)} onClick={()=>{setActionType('add')}}/>
         </div>
     </>
     )
