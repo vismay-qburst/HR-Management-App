@@ -1,7 +1,6 @@
 const sortTable = (keyList, employeeDetails, columnIndex) => {
     let key, switching, i, shouldSwitch, switched = 0;
     key=keyList[columnIndex]
-    console.log(key);
     switching = true;
     let direction = "ascending";
     while (switching) {

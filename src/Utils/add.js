@@ -11,7 +11,6 @@ export default function addEmployee(tableEntries,employeeDetails,emp,close)
     {
     emp.skills=[]
     employeeDetails.push(emp)
-    console.log(employeeDetails,emp);
     close()
     return employeeDetails
     }

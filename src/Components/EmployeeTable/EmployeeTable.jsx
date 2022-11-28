@@ -1,7 +1,8 @@
 import sortTable from "../../Utils/sort"
+import Button from "../Button/Button"
 
 
-export default function EmployeeTable({ tableEntries,setIsModalOpen, setDeleteModal, setEmployeeDetails, employeeDetails, skills }) {
+export default function EmployeeTable({ tableEntries, openModal, setEmployeeDetails, employeeDetails, skills }) {
     const sortableColumns = ["Employee ID", "Employee Name", "Department", "Designation", "Salary"]
     const unsortableColumns = ["Skills", "Actions"]
 
@@ -12,7 +13,6 @@ export default function EmployeeTable({ tableEntries,setIsModalOpen, setDeleteMo
         obj["dataHeader"] = tableEntries[index]
         arrayOfObj.push(obj)
     })
-    console.log("Objects:", arrayOfObj)
     const ColumnHeader = ({ columnName, isSortable, sort }) => {
         return (
             isSortable ? <th className="sortableColumn" onClick={sort}>{columnName}</th> : <th>{columnName}</th>
@@ -31,12 +31,10 @@ export default function EmployeeTable({ tableEntries,setIsModalOpen, setDeleteMo
             if (skillIndices.includes(skillObj.skillId))
                 skillArray.push(skillObj.skill)
         })
-        console.log('Array:', skillArray);
         return (
             <td>{skillArray.join(', ')}</td>
         )
     }
-    console.log("Rendering table",);
     return (
         <>
             <table className="employeeTable">
@@ -47,11 +45,16 @@ export default function EmployeeTable({ tableEntries,setIsModalOpen, setDeleteMo
                 <tbody className="tableBody">
                     {
                         employeeDetails.map
-                            ((emp, index) =>
+                            (emp =>
                                 <tr>
                                     {tableEntries.map(entry => <DataEntry emp={emp} entry={entry} />)}
                                     <Skills skillIndices={emp.skills} employeeSkills={skills} />
-                                    <td><div className="flexbox tableButtons"><button className="buttonStyle actionButton" onClick={() => { setIsModalOpen([index, true]) }}><i className="material-icons">visibility</i>+</button><button className="buttonStyle actionButton" onClick={() => { setDeleteModal([index, true]) }}><i className="material-icons">delete</i></button></div></td>
+                                    <td>
+                                        <div className="flexbox tableButtons">
+                                            <Button buttonClass={"buttonStyle actionButton"} buttonText={(<i className="material-icons">visibility</i>)} onClick={() => { openModal(emp.empID,'view') }}/>
+                                            <Button buttonClass={"buttonStyle actionButton"} buttonText={(<i className="material-icons">delete</i>)} onClick={() => { openModal(emp.empID,'delete') }} />
+                                        </div>
+                                    </td>
                                 </tr>
                             )
                     }
