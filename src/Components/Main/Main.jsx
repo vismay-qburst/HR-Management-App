@@ -10,7 +10,6 @@ import TableOperations from '../TableOperations/TableOperations';
 export default function Main() {
     const [employeeDetails, setEmployeeDetails] = useState([])
     const [employeeSkills, setSkills] = useState([])
-    const [loader, setLoader] = useState(true);
     const [actionType, setActionType] = useState('');
     const [empId, setEmpId] = useState('');
     const [deleteModal, setDeleteModal] = useState([0, false])
@@ -23,7 +22,6 @@ export default function Main() {
         setEmpId(id)
         setActionType(action)
     }
-    // setLoader(false)
     let getData = () => {
         fetch("data/employee.json")
             .then(res => res.json())
@@ -36,8 +34,6 @@ export default function Main() {
         getData()
     }
     const tableEntries = ["empID", "empName", "department", "designation", "salary"]
-    console.log(deleteModal);
-    const [isModalOpen, setIsModalOpen] = useState([0, false])
     useEffect(getSkills, [])
 
     const selectedEmp = useMemo(() => {
@@ -52,7 +48,8 @@ export default function Main() {
                 break
             }
             case 'delete': {
-                setEmployeeDetails(deleteEmployee(closeModal,employeeDetails.indexOf(selectedEmp),employeeDetails))
+                setEmployeeDetails(deleteEmployee(employeeDetails.indexOf(selectedEmp),employeeDetails))
+                closeModal()
                 break
             }
             case 'view': {
@@ -62,6 +59,7 @@ export default function Main() {
             case 'edit': {
                 setEmployeeDetails(editEmployeeDetails(tableEntries,employeeDetails.indexOf(selectedEmp),closeModal,empData,employeeDetails))
             }
+            default: return null;
         }
     }
 
@@ -78,7 +76,7 @@ export default function Main() {
                 return null;
         }
     }
-    console.log("Rendering main", isModalOpen);
+    console.log("Rendering main");
     let tempArray = [...employeeDetails]
     return (
         <main className='flexbox'>
