@@ -12,13 +12,11 @@ export default function Main() {
     const [employeeSkills, setSkills] = useState([])
     const [actionType, setActionType] = useState('');
     const [empId, setEmpId] = useState('');
-    const [deleteModal, setDeleteModal] = useState([0, false])
     const closeModal = () => {
         setActionType('')
         setEmpId('')
     }
     const openModal = (id,action) => {
-        console.log(id,action);
         setEmpId(id)
         setActionType(action)
     }
@@ -37,7 +35,6 @@ export default function Main() {
     useEffect(getSkills, [])
 
     const selectedEmp = useMemo(() => {
-        console.log("EMPID changed");
         return employeeDetails.find(empObj=>empObj.empID===empId)
     }, [empId])
 
@@ -76,7 +73,6 @@ export default function Main() {
                 return null;
         }
     }
-    console.log("Rendering main");
     let tempArray = [...employeeDetails]
     return (
         <main className='flexbox'>

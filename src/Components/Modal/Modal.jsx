@@ -8,7 +8,6 @@ export default function Modal({setActionType, actionType, handleUpdate, close, e
     const isEdit = (actionType==='edit')
     const isEditable = isAdd || isEdit
     const [emp,setEmp] = useState(employee)
-    console.log(actionType)
     return(
         <>
             <div className="modalOpen" onClick={close}>

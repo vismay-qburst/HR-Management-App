@@ -13,7 +13,6 @@ export default function EmployeeTable({ tableEntries, openModal, setEmployeeDeta
         obj["dataHeader"] = tableEntries[index]
         arrayOfObj.push(obj)
     })
-    console.log("Objects:", arrayOfObj)
     const ColumnHeader = ({ columnName, isSortable, sort }) => {
         return (
             isSortable ? <th className="sortableColumn" onClick={sort}>{columnName}</th> : <th>{columnName}</th>
@@ -32,12 +31,10 @@ export default function EmployeeTable({ tableEntries, openModal, setEmployeeDeta
             if (skillIndices.includes(skillObj.skillId))
                 skillArray.push(skillObj.skill)
         })
-        console.log('Array:', skillArray);
         return (
             <td>{skillArray.join(', ')}</td>
         )
     }
-    console.log("Rendering table",);
     return (
         <>
             <table className="employeeTable">
