@@ -19,7 +19,6 @@ export default function Modal({setActionType, actionType, handleUpdate, close, e
                     <p>All data corresponding to this employee will be removed. Are you sure you want to delete this
                     employee?</p>
                     :
-                    <>
                     <div className="details formContainer">
                         <label class={flag?"modalLabel requiredField":"modalLabel"} for="empID">Employee ID: </label>
                         <input readOnly={!flag} type="text" class={flag?null:"readOnlyField"} id="empID" value={emp.empID} onChange={(e)=>setEmp({ ...emp, empID: e.target.value })}/>
@@ -40,12 +39,11 @@ export default function Modal({setActionType, actionType, handleUpdate, close, e
                         <label class={flag?"modalLabel requiredField":"modalLabel"} for="salary">Salary: </label>
                         <input readOnly={!flag} type="text" class={flag?null:"readOnlyField"} id="salary" value={emp.salary} onChange={(e)=>setEmp({ ...emp, salary: e.target.value })}/>
                     </div>
-                    </>
                     }
                     {isDelete?
                     <div id="deleteModalButtons" class="modalButtonContainer flexbox">
                         <button class="buttonStyle" id="deleteConfirmButton"
-                            onClick={()=>{handleUpdate(emp)}}><strong>Delete</strong></button>
+                            onClick={()=>{handleUpdate()}}><strong>Delete</strong></button>
                         <button class="buttonStyle" id="cancelButton"
                             onClick={close}><strong>Cancel</strong></button>
                     </div>
@@ -57,7 +55,7 @@ export default function Modal({setActionType, actionType, handleUpdate, close, e
                         (
                         <>
                         {isEdit?null:<Button buttonClass={"buttonStyle editButton"} buttonText={(<strong>Edit</strong>)} onClick={()=>{setActionType('edit')}}/>}
-                        <Button buttonClass={"buttonStyle okButton"} buttonText={(<strong>OK</strong>)} onClick={()=>{console.log(actionType);handleUpdate(emp)}}/>
+                        <Button buttonClass={"buttonStyle okButton"} buttonText={(<strong>OK</strong>)} onClick={()=>{handleUpdate(emp)}}/>
                         </>
                         )}
                     </div>

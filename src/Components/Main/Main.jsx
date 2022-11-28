@@ -42,7 +42,7 @@ export default function Main() {
 
     const selectedEmp = useMemo(() => {
         console.log("EMPID changed");
-        return employeeDetails.find(empObj=>empObj.empID==empId)
+        return employeeDetails.find(empObj=>empObj.empID===empId)
     }, [empId])
 
     const handleUpdate = (empData) => {
@@ -56,7 +56,6 @@ export default function Main() {
                 break
             }
             case 'view': {
-                console.log("testing");
                 closeModal()
                 break
             }
@@ -69,13 +68,12 @@ export default function Main() {
     const renderModals = () => {
         switch (actionType) {
             case 'add':
-                return <Modal tableEntries={tableEntries} actionType={actionType} close={closeModal} handleUpdate={handleUpdate} employeeDetails={tempArray} employee={{}} />
+                return <Modal actionType={actionType} close={closeModal} handleUpdate={handleUpdate} employee={{}} />
             case 'delete':
-                return <Modal tableEntries={tableEntries} actionType={actionType} close={closeModal} handleUpdate={handleUpdate} employeeDetails={tempArray} employee={selectedEmp} />
-            case 'view':
-                return <Modal tableEntries={tableEntries} setActionType={setActionType} close={closeModal} setEmployeeDetails={setEmployeeDetails} employeeDetails={tempArray} employee={selectedEmp} />   
             case 'edit':
-                return <Modal tableEntries={tableEntries} actionType={actionType} close={closeModal} handleUpdate={handleUpdate} employeeDetails={tempArray} employee={selectedEmp} />
+                return <Modal actionType={actionType} close={closeModal} handleUpdate={handleUpdate} employee={selectedEmp} />
+            case 'view':
+                return <Modal actionType={actionType} close={closeModal} handleUpdate={handleUpdate} setActionType={setActionType} employee={selectedEmp} />
             default:
                 return null;
         }
@@ -87,7 +85,7 @@ export default function Main() {
             <TableOperations setActionType={setActionType} />
             {renderModals()}
             <div className='tableContainer'>
-                {employeeDetails.length ? (<EmployeeTable tableEntries={tableEntries} openModal={openModal} setIsModalOpen={setIsModalOpen} setDeleteModal={setDeleteModal} setEmployeeDetails={setEmployeeDetails} employeeDetails={tempArray} skills={employeeSkills} />) : (<h2>No employee data found</h2>)}
+                {employeeDetails.length ? (<EmployeeTable tableEntries={tableEntries} openModal={openModal} setEmployeeDetails={setEmployeeDetails} employeeDetails={tempArray} skills={employeeSkills} />) : (<h2>No employee data found</h2>)}
             </div>
         </main>
     )
