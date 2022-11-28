@@ -23,12 +23,13 @@ export default function Main()
     }
     const [isModalOpen, setIsModalOpen] = useState(false)
   useEffect(getSkills,[])
+  console.log("Rendering main");
   return(
     <main className='flexbox'>
         <TableOperations />
-        <Modal />
+        {/* <Modal /> */}
         <div className='tableContainer'>
-            {employeeDetails.length?(<EmployeeTable employeeDetails={employeeDetails} skills={employeeSkills}/>):null}
+            {employeeDetails.length?(<EmployeeTable setEmployeeDetails = {setEmployeeDetails} employeeDetails={employeeDetails} skills={employeeSkills}/>):null}
         </div>
    </main>
   )
