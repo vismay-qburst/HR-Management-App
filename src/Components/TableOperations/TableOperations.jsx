@@ -1,9 +1,11 @@
 import Button from "../Button/Button";
+import Modal from "../Modal/Modal";
 
-export default function TableOperations()
+export default function TableOperations({setActionType})
 {
     return (
-    <div className="tableOperations flexbox">
+    <>
+        <div className="tableOperations flexbox">
         <div className="dropdown filterTable list2" onClick="openDropDown(2)">
             Filter
             <i className="fa fa-filter"></i>
@@ -14,9 +16,9 @@ export default function TableOperations()
                 </ul>
             </div>
         </div>
-        {/* <button className="addEmployeeButton buttonStyle"><strong>Add employee</strong></button> */}
-        <Button buttonClass={"addEmployeeButton buttonStyle"} buttonText={(<strong>Add employee</strong>)} onClick={()=>{alert("Click")}}/>
-    </div>
+        <Button buttonClass={"addEmployeeButton buttonStyle"} buttonText={(<strong>Add employee</strong>)} onClick={()=>{setActionType('add')}}/>
+        </div>
+    </>
     )
 }
 
