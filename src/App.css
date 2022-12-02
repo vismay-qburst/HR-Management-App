@@ -174,15 +174,9 @@ td {
 
 }
 
-.addModalButton {
-  position: absolute;
-  bottom: 0.5em;
-  left: 42%;
-}
-
 .soloModalButton {
   position: absolute;
-  bottom: 2.5em;
+  bottom: 0.5em;
   left: 42%;
 }
 
@@ -229,8 +223,8 @@ input {
   top: 21%;
 }
 
-.dropdown ul.items {
-  display: none;
+.skillList {
+  display: block;
   margin: 0;
   border: 1px solid #ccc;
   border-top: none;

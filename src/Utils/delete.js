@@ -1,5 +1,4 @@
-export default function deleteEmployee(closeDeleteModal,n,employeeDetails) {
+export default function deleteEmployee(n,employeeDetails) {
     employeeDetails.splice(n, 1)
-    closeDeleteModal()
     return employeeDetails
 }

@@ -1,46 +1,115 @@
-import { useState,useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+import deleteEmployee from '../../Utils/delete';
+import updateEmployeeDetails from '../../Utils/update';
 import EmployeeTable from '../EmployeeTable/EmployeeTable';
-import ConfirmDeleteModal from '../Modal/ConfirmDelete';
 import Modal from '../Modal/Modal';
+import SkillList from '../SkillList/SkillList';
 import TableOperations from '../TableOperations/TableOperations';
 
 
-export default function Main()
-{
-    const [employeeDetails, setEmployeeDetails] = useState([]) 
+export default function Main() {
+    const [employeeDetails, setEmployeeDetails] = useState([])
     const [employeeSkills, setSkills] = useState([])
-    const [loader, setLoader] = useState(true)
-    const [deleteModal,setDeleteModal]=useState([0,false])
-    const closeModal = (event) => {
-        setDeleteModal(!deleteModal)
-        setIsModalOpen(false)
+    const [actionType, setActionType] = useState('');
+    const [empId, setEmpId] = useState('');
+    const [dropDown, setDropDown] = useState(false)
+    const [filterList, setFilterList] = useState('')
+    const [selectedSkills, setSelectedSkills] = useState([])
+
+    const toggleDropDown = (isFilter) => {
+        setDropDown(!dropDown)
+        setFilterList(isFilter)
+        setSelectedSkills([])
     }
-    // setLoader(false)
+    const closeModal = () => {
+        setActionType('')
+        setEmpId('')
+        setDropDown(false)
+    }
+    const openModal = (id,action) => {
+        setEmpId(id)
+        setActionType(action)
+        setFilterList('')
+    }
     let getData = () => {
         fetch("data/employee.json")
             .then(res => res.json())
-            .then(obj => {setEmployeeDetails(obj)})
+            .then(empData => { setEmployeeDetails(empData) })
     }
     let getSkills = () => {
         fetch("data/skills.json")
             .then(res => res.json())
-            .then(obj => {setSkills(obj)})
+            .then(skillData => { setSkills(skillData) })
         getData()
     }
-    console.log(deleteModal);
-    const [isModalOpen, setIsModalOpen] = useState(false)
-  useEffect(getSkills,[])
-  console.log("Rendering main");
-  let tempArray = [...employeeDetails]
-  return(
-    <main className='flexbox'>
-        <TableOperations />
-        {/* {isModalOpen?<Modal close={closeModal}/>:null} */}
-        {deleteModal[1]?(<ConfirmDeleteModal index={ deleteModal[0] } setEmployeeDetails = {setEmployeeDetails} employeeDetails={ tempArray } closeDeleteModal={closeModal}/>):null}
-        <Modal />
-        <div className='tableContainer'>
-            {employeeDetails.length?(<EmployeeTable setDeleteModal={setDeleteModal} setEmployeeDetails = {setEmployeeDetails} employeeDetails={ tempArray } skills={employeeSkills}/>):(<h2>No employee data found</h2>)}
-        </div>
-   </main>
-  )
+    const tableEntries = ["empID", "empName", "department", "designation", "salary", "skills"]
+    useEffect(getSkills, [])
+
+    const selectedEmp = useMemo(() => {
+        return employeeDetails.find(empObj=>empObj.empID===empId)
+    }, [empId])
+
+    const preFilterArray = useMemo(() => employeeDetails, [employeeSkills])
+
+    const handleUpdate = (empData) => {
+        console.log(empData);
+        switch (actionType) {
+            case 'add': {
+                setEmployeeDetails(updateEmployeeDetails(tableEntries, employeeDetails.length, closeModal,empData,employeeDetails))
+                break
+            }
+            case 'delete': {
+                setEmployeeDetails(deleteEmployee(employeeDetails.indexOf(selectedEmp),employeeDetails))
+                closeModal()
+                break
+            }
+            case 'view': {
+                closeModal()
+                break
+            }
+            case 'edit': {
+                setEmployeeDetails(updateEmployeeDetails(tableEntries,employeeDetails.indexOf(selectedEmp),closeModal,empData,employeeDetails))
+                break
+            }
+            default: return null;
+        }
+    }
+
+    const renderModals = () => {
+        switch (actionType) {
+            case 'add':
+                return <Modal selectedSkills={ selectedSkills } employeeSkills={employeeSkills} actionType={actionType} close={closeModal} handleUpdate={handleUpdate} employee={{}} openList={toggleDropDown} renderSkillList={ renderSkillList }/>
+            case 'delete':
+            case 'edit':
+                return <Modal selectedSkills={ selectedSkills } employeeSkills={employeeSkills} actionType={actionType} close={closeModal} handleUpdate={handleUpdate} employee={selectedEmp} openList={toggleDropDown} renderSkillList={ renderSkillList }/>
+            case 'view':
+                return <Modal selectedSkills={ selectedSkills } employeeSkills={employeeSkills} actionType={actionType} close={closeModal} handleUpdate={handleUpdate} setActionType={setActionType} employee={selectedEmp} />
+            default:
+                return null;
+        }
+    }
+
+    const handleCheckBox = (e) => {
+        e.target.checked?setSelectedSkills([...selectedSkills,Number(e.target.value)]):selectedSkills.splice(selectedSkills.indexOf(e.target.value),1);
+    }
+
+    const handleFilter = () => {
+        console.log(selectedSkills,employeeDetails, preFilterArray);
+        selectedSkills.length?setEmployeeDetails(employeeDetails.filter(empObj => empObj.skills.some(skillId => selectedSkills.includes(skillId)))):setEmployeeDetails(preFilterArray)
+        setSelectedSkills([])
+    }
+
+    const renderSkillList = (isFilterList) => {
+        return dropDown?<SkillList filter = { handleFilter } handleCheckBox={ handleCheckBox } employeeSkills={employeeSkills} isFilterList={isFilterList} />:null
+    }
+    let tempArray = [...employeeDetails]
+    return (
+        <main className='flexbox'>
+            <TableOperations filterList={ filterList } openModal={openModal} openList={toggleDropDown} renderSkillList={renderSkillList}/>
+            {renderModals()}
+            <div className='tableContainer'>
+                {employeeDetails.length ? (<EmployeeTable tableEntries={tableEntries} openModal={openModal} setEmployeeDetails={setEmployeeDetails} employeeDetails={tempArray} skills={employeeSkills} />) : (<h2>No employee data found</h2>)}
+            </div>
+        </main>
+    )
 }
