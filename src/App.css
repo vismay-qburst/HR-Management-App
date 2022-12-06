@@ -8,8 +8,8 @@ body {
   padding: 500px;
 }
 
-img {
-  max-height: 45px;
+main img{
+  width: 45%;
 }
 
 .flexbox {
@@ -142,7 +142,8 @@ td {
 .formContainer {
   width: 90%;
   display: flex;
-  flex-wrap: wrap;
+  /* justify-content: space-around; */
+  gap: 3em;
   column-gap: 1em;
   row-gap: 1em;
 }
@@ -265,4 +266,12 @@ input {
   color: red;
 }
 
-
+.formColumn{
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 55%;
+}
+.formRow{
+  display: flex;
+}

@@ -1,6 +1,6 @@
 import Button from "../Button/Button";
 
-export default function SkillList({filter,handleCheckBox,employeeSkills,isFilterList})
+export default function SkillList({ selectedSkills,filter,handleCheckBox,employeeSkills,isFilterList })
 {
     return(
         <>
@@ -10,7 +10,7 @@ export default function SkillList({filter,handleCheckBox,employeeSkills,isFilter
                     skill=>
                     <li onClick={e => {e.stopPropagation()}}>
                         <span>
-                            <input type="checkbox" id={skill.skillId} value={skill.skillId} onChange={e => handleCheckBox(e)}/>
+                            <input type="checkbox" id={skill.skillId} value={skill.skillId} defaultChecked={selectedSkills.includes(skill.skillId)} onChange={e => handleCheckBox(e)}/>
                         </span>
                         <label for={skill.skillId}>{skill.skill}</label>
                     </li>

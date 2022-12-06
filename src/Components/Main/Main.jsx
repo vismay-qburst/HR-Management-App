@@ -19,12 +19,13 @@ export default function Main() {
     const toggleDropDown = (isFilter) => {
         setDropDown(!dropDown)
         setFilterList(isFilter)
-        setSelectedSkills([])
+        isFilter?setSelectedSkills(selectedSkills):setSelectedSkills([])
     }
     const closeModal = () => {
         setActionType('')
         setEmpId('')
         setDropDown(false)
+        setSelectedSkills([])
     }
     const openModal = (id,action) => {
         setEmpId(id)
@@ -90,19 +91,22 @@ export default function Main() {
     }
 
     const handleCheckBox = (e) => {
+        // selectedSkills.includes(Number(e.target.value))?console.log(e.target.checked):console.log("Not already selected");
         e.target.checked?setSelectedSkills([...selectedSkills,Number(e.target.value)]):selectedSkills.splice(selectedSkills.indexOf(e.target.value),1);
     }
 
     const handleFilter = () => {
         console.log(selectedSkills,employeeDetails, preFilterArray);
-        selectedSkills.length?setEmployeeDetails(employeeDetails.filter(empObj => empObj.skills.some(skillId => selectedSkills.includes(skillId)))):setEmployeeDetails(preFilterArray)
-        setSelectedSkills([])
+        selectedSkills.length?setEmployeeDetails(preFilterArray.filter(empObj => selectedSkills.every(skillId => empObj.skills.includes(skillId)))):setEmployeeDetails(preFilterArray)
+        // setSelectedSkills([])
     }
 
     const renderSkillList = (isFilterList) => {
-        return dropDown?<SkillList filter = { handleFilter } handleCheckBox={ handleCheckBox } employeeSkills={employeeSkills} isFilterList={isFilterList} />:null
+        return dropDown?<SkillList selectedSkills={ selectedSkills } filter = { handleFilter } handleCheckBox={ handleCheckBox } employeeSkills={employeeSkills} isFilterList={isFilterList} />:null
     }
+
     let tempArray = [...employeeDetails]
+
     return (
         <main className='flexbox'>
             <TableOperations filterList={ filterList } openModal={openModal} openList={toggleDropDown} renderSkillList={renderSkillList}/>
