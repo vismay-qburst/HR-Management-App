@@ -47,7 +47,7 @@ export default function EmployeeTable({ tableEntries, openModal, setEmployeeDeta
                         employeeDetails.map
                             (emp =>
                                 <tr>
-                                    {tableEntries.map(entry => <DataEntry emp={emp} entry={entry} />)}
+                                    {tableEntries.map(entry => entry!=="skills"?<DataEntry emp={emp} entry={entry} />:null)}
                                     <Skills skillIndices={emp.skills} employeeSkills={skills} />
                                     <td>
                                         <div className="flexbox tableButtons">

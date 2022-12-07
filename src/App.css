@@ -8,8 +8,8 @@ body {
   padding: 500px;
 }
 
-img {
-  max-height: 45px;
+main img{
+  width: 45%;
 }
 
 .flexbox {
@@ -142,7 +142,8 @@ td {
 .formContainer {
   width: 90%;
   display: flex;
-  flex-wrap: wrap;
+  /* justify-content: space-around; */
+  gap: 3em;
   column-gap: 1em;
   row-gap: 1em;
 }
@@ -174,15 +175,9 @@ td {
 
 }
 
-.addModalButton {
-  position: absolute;
-  bottom: 0.5em;
-  left: 42%;
-}
-
 .soloModalButton {
   position: absolute;
-  bottom: 2.5em;
+  bottom: 0.5em;
   left: 42%;
 }
 
@@ -229,8 +224,8 @@ input {
   top: 21%;
 }
 
-.dropdown ul.items {
-  display: none;
+.skillList {
+  display: block;
   margin: 0;
   border: 1px solid #ccc;
   border-top: none;
@@ -271,4 +266,12 @@ input {
   color: red;
 }
 
-
+.formColumn{
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 55%;
+}
+.formRow{
+  display: flex;
+}

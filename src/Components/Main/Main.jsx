@@ -1,9 +1,9 @@
 import { useState, useEffect, useMemo } from 'react';
-import addEmployee from '../../Utils/add';
 import deleteEmployee from '../../Utils/delete';
-import editEmployeeDetails from '../../Utils/edit';
+import updateEmployeeDetails from '../../Utils/update';
 import EmployeeTable from '../EmployeeTable/EmployeeTable';
 import Modal from '../Modal/Modal';
+import SkillList from '../SkillList/SkillList';
 import TableOperations from '../TableOperations/TableOperations';
 
 
@@ -12,13 +12,25 @@ export default function Main() {
     const [employeeSkills, setSkills] = useState([])
     const [actionType, setActionType] = useState('');
     const [empId, setEmpId] = useState('');
+    const [dropDown, setDropDown] = useState(false)
+    const [filterList, setFilterList] = useState('')
+    const [selectedSkills, setSelectedSkills] = useState([])
+
+    const toggleDropDown = (isFilter) => {
+        setDropDown(!dropDown)
+        setFilterList(isFilter)
+        isFilter?setSelectedSkills(selectedSkills):setSelectedSkills([])
+    }
     const closeModal = () => {
         setActionType('')
         setEmpId('')
+        setDropDown(false)
+        setSelectedSkills([])
     }
     const openModal = (id,action) => {
         setEmpId(id)
         setActionType(action)
+        setFilterList('')
     }
     let getData = () => {
         fetch("data/employee.json")
@@ -31,17 +43,20 @@ export default function Main() {
             .then(skillData => { setSkills(skillData) })
         getData()
     }
-    const tableEntries = ["empID", "empName", "department", "designation", "salary"]
+    const tableEntries = ["empID", "empName", "department", "designation", "salary", "skills"]
     useEffect(getSkills, [])
 
     const selectedEmp = useMemo(() => {
         return employeeDetails.find(empObj=>empObj.empID===empId)
     }, [empId])
 
+    const preFilterArray = useMemo(() => employeeDetails, [employeeSkills])
+
     const handleUpdate = (empData) => {
+        console.log(empData);
         switch (actionType) {
             case 'add': {
-                setEmployeeDetails(addEmployee(tableEntries, employeeDetails, empData, closeModal))
+                setEmployeeDetails(updateEmployeeDetails(tableEntries, employeeDetails.length, closeModal,empData,employeeDetails))
                 break
             }
             case 'delete': {
@@ -54,7 +69,8 @@ export default function Main() {
                 break
             }
             case 'edit': {
-                setEmployeeDetails(editEmployeeDetails(tableEntries,employeeDetails.indexOf(selectedEmp),closeModal,empData,employeeDetails))
+                setEmployeeDetails(updateEmployeeDetails(tableEntries,employeeDetails.indexOf(selectedEmp),closeModal,empData,employeeDetails))
+                break
             }
             default: return null;
         }
@@ -63,20 +79,37 @@ export default function Main() {
     const renderModals = () => {
         switch (actionType) {
             case 'add':
-                return <Modal actionType={actionType} close={closeModal} handleUpdate={handleUpdate} employee={{}} />
+                return <Modal selectedSkills={ selectedSkills } employeeSkills={employeeSkills} actionType={actionType} close={closeModal} handleUpdate={handleUpdate} employee={{}} openList={toggleDropDown} renderSkillList={ renderSkillList }/>
             case 'delete':
             case 'edit':
-                return <Modal actionType={actionType} close={closeModal} handleUpdate={handleUpdate} employee={selectedEmp} />
+                return <Modal selectedSkills={ selectedSkills } employeeSkills={employeeSkills} actionType={actionType} close={closeModal} handleUpdate={handleUpdate} employee={selectedEmp} openList={toggleDropDown} renderSkillList={ renderSkillList }/>
             case 'view':
-                return <Modal actionType={actionType} close={closeModal} handleUpdate={handleUpdate} setActionType={setActionType} employee={selectedEmp} />
+                return <Modal selectedSkills={ selectedSkills } employeeSkills={employeeSkills} actionType={actionType} close={closeModal} handleUpdate={handleUpdate} setActionType={setActionType} employee={selectedEmp} />
             default:
                 return null;
         }
     }
+
+    const handleCheckBox = (e) => {
+        // selectedSkills.includes(Number(e.target.value))?console.log(e.target.checked):console.log("Not already selected");
+        e.target.checked?setSelectedSkills([...selectedSkills,Number(e.target.value)]):selectedSkills.splice(selectedSkills.indexOf(e.target.value),1);
+    }
+
+    const handleFilter = () => {
+        console.log(selectedSkills,employeeDetails, preFilterArray);
+        selectedSkills.length?setEmployeeDetails(preFilterArray.filter(empObj => selectedSkills.every(skillId => empObj.skills.includes(skillId)))):setEmployeeDetails(preFilterArray)
+        // setSelectedSkills([])
+    }
+
+    const renderSkillList = (isFilterList) => {
+        return dropDown?<SkillList selectedSkills={ selectedSkills } filter = { handleFilter } handleCheckBox={ handleCheckBox } employeeSkills={employeeSkills} isFilterList={isFilterList} />:null
+    }
+
     let tempArray = [...employeeDetails]
+
     return (
         <main className='flexbox'>
-            <TableOperations setActionType={setActionType} />
+            <TableOperations filterList={ filterList } openModal={openModal} openList={toggleDropDown} renderSkillList={renderSkillList}/>
             {renderModals()}
             <div className='tableContainer'>
                 {employeeDetails.length ? (<EmployeeTable tableEntries={tableEntries} openModal={openModal} setEmployeeDetails={setEmployeeDetails} employeeDetails={tempArray} skills={employeeSkills} />) : (<h2>No employee data found</h2>)}
