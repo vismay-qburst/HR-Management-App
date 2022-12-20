@@ -1,19 +1,21 @@
+import { Link } from 'react-router-dom'
 import './Header.css'
 
-const HeaderImage = ({ imagesource }) => {
+const HeaderImage = ({ isTablePage,imagesource }) => {
     return(
-        imagesource.property?<img src={ imagesource.url } alt={ imagesource.alt } className={ imagesource.property }/>:<img src={ imagesource.url } alt={ imagesource.alt }/>
+        imagesource.property?<Link to={isTablePage?'/':'/table'}><img src={ imagesource.url } alt={ imagesource.alt } className={ imagesource.property }/></ Link>:<img src={ imagesource.url } alt={ imagesource.alt }/>
     )
 }
 
-const imageList=[{"url":"images/logo1.png","alt":"Logo"},{"url":"images/menuIcon.png","alt":"MenuIcon", "property":"menuIcon"}]
+const [Logo,Home,Table]=[{"url":"/images/logo1.png","alt":"Logo"},{"url":"/images/buildingLogo.png","alt":"Home page", "property":"menuIcon"},{"url":"/images/employees.png","alt":"Employee table", "property":"menuIcon"}]
 
-function Header()
+function Header({ isTablePage })
 {
     return(
         <>
         <header className="flexbox">
-        {imageList.map(image => <HeaderImage imagesource={image}/>)}
+        <HeaderImage  imagesource={Logo}/>
+        {isTablePage?<HeaderImage isTablePage={isTablePage} imagesource={Home}/>:<HeaderImage isTablePage={isTablePage} imagesource={Table}/>}
         </header>
         </>
     )
