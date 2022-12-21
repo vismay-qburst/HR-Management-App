@@ -86,7 +86,7 @@ export default function Modal({selectedSkills,employeeSkills,setActionType, acti
                     </div>
                     :
                     <div className={isEditable?"soloModalButton modalButtonContainer flexbox":"viewModalButtons modalButtonContainer flexbox"}>
-                        {isEditable?null:<Button buttonClass={"buttonStyle editButton"} buttonText={(<strong>Edit</strong>)} onClick={()=>{setActionType('edit')}}/>}
+                        {isEditable?null:<Link to={`/table/edit-employee/${emp.empID}`}><Button buttonClass={"buttonStyle editButton"} buttonText={(<strong>Edit</strong>)}/></Link>}
                         <Button buttonClass={isAdd?"buttonStyle addButton":"buttonStyle okButton"} buttonText={isAdd?(<strong>Add</strong>):(<strong>OK</strong>)} onClick={()=>{handleUpdate({ ...emp, skills: [...selectedSkills] })}}/>
                     </div>
                     }

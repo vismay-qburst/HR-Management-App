@@ -52,8 +52,8 @@ export default function EmployeeTable({ tableEntries, openModal, setEmployeeDeta
                                     <Skills skillIndices={emp.skills} employeeSkills={skills} />
                                     <td>
                                         <div className="flexbox tableButtons">
-                                            <Link to={`/table/view-employee/${emp.empID}`}><Button buttonClass={"buttonStyle actionButton"} buttonText={(<i className="material-icons">visibility</i>)} onClick={() => { openModal(emp.empID,'view') }}/></Link>
-                                            <Link to={`/table/delete-employee/${emp.empID}`}><Button buttonClass={"buttonStyle actionButton"} buttonText={(<i className="material-icons">delete</i>)} onClick={() => { openModal(emp.empID,'delete') }} /></Link>
+                                            <Link to={`/table/view-employee/${emp.empID}`}><Button buttonClass={"buttonStyle actionButton"} buttonText={(<i className="material-icons">visibility</i>)}/></Link>
+                                            <Link to={`/table/delete-employee/${emp.empID}`}><Button buttonClass={"buttonStyle actionButton"} buttonText={(<i className="material-icons">delete</i>)}/></Link>
                                         </div>
                                     </td>
                                 </tr>

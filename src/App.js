@@ -42,6 +42,22 @@ const router = createBrowserRouter([
     </>
   },
   {
+    path: "/table/edit-employee/:empid",
+    element: <>
+      <Header isTablePage={true}/>
+      <Main />
+      <Footer />
+    </>
+  },
+  {
+    path: "/table/add-employee",
+    element: <>
+      <Header isTablePage={true}/>
+      <Main />
+      <Footer />
+    </>
+  },
+  {
     path:"*",
     element:<>
     <Header />

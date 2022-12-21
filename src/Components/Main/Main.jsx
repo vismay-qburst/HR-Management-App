@@ -33,14 +33,33 @@ export default function Main() {
         nav("/table")
     }
     const openModal = (id,action) => {
+        console.log(id,action);
         setEmpId(id)
         setActionType(action)
         setFilterList('')
     }
+    let modalRoute = (empList) => {
+        const id = params.empid
+        const path = location.pathname
+        if(id && empList.length)
+        {
+            if(path.includes("view"))
+                openModal(id,"view")
+            else if(path.includes("delete"))
+                openModal(id,"delete")
+            else if(path.includes("edit"))
+                setActionType('edit')
+        }
+        else if(path.includes('add'))
+            openModal('','add')
+    }
     let getData = () => {
         fetch("/data/employee.json")
             .then(res => res.json())
-            .then(empData => { setEmployeeDetails(empData) })
+            .then(empData => {
+                setEmployeeDetails(empData);
+                modalRoute(empData)
+            })
     }
     let getSkills = () => {
         fetch("/data/skills.json")
@@ -84,12 +103,8 @@ export default function Main() {
     console.log(params, location)
 
     useEffect(()=>{
-        if(params.empid)
-        {
-            if(location.pathname.includes("view"))
-                openModal(Number(params.empid),"view")
-        }
-    },[params])
+        modalRoute(employeeDetails)
+    },[params,location])
 
     console.log(actionType);
 
@@ -129,9 +144,6 @@ export default function Main() {
         <main className='flexbox'>
             <TableOperations filterList={ filterList } openModal={openModal} openList={toggleDropDown} renderSkillList={renderSkillList}/>
             {renderModals()}
-            <Routes>
-                <Route path='/view-employee/:empID' element={<Modal selectedSkills={ selectedSkills } employeeSkills={employeeSkills} actionType={actionType} close={closeModal} handleUpdate={handleUpdate} setActionType={setActionType} employee={selectedEmp} />} />
-            </Routes>
             <div className='tableContainer'>
                 {employeeDetails.length ? (<EmployeeTable tableEntries={tableEntries} openModal={openModal} setEmployeeDetails={setEmployeeDetails} employeeDetails={tempArray} skills={employeeSkills} />) : (<h2>No employee data found</h2>)}
             </div>

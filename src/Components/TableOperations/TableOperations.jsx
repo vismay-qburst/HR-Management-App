@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Button from "../Button/Button";
 
 export default function TableOperations({ filterList, openModal, openList, renderSkillList })
@@ -10,7 +11,7 @@ export default function TableOperations({ filterList, openModal, openList, rende
             <i className="fa fa-filter"></i>
             {filterList?renderSkillList('isFilter'):null}
         </div>
-        <Button buttonClass={"addEmployeeButton buttonStyle"} buttonText={(<strong>Add employee</strong>)} onClick={()=>{openModal('','add')}}/>
+        <Link to={"/table/add-employee"}><Button buttonClass={"addEmployeeButton buttonStyle"} buttonText={(<strong>Add employee</strong>)}/></Link>
         </div>
     </>
     )
