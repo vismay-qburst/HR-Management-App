@@ -1,6 +1,6 @@
 import './Footer.css'
 
-function FooterSection()
+function Footer()
 {
     return(
         <>
@@ -11,4 +11,4 @@ function FooterSection()
     )
 }
 
-export default FooterSection
+export default Footer

@@ -48,7 +48,7 @@ export default function Main() {
             else if(path.includes("delete"))
                 openModal(id,"delete")
             else if(path.includes("edit"))
-                setActionType('edit')
+                openModal(id,'edit')
         }
         else if(path.includes('add'))
             openModal('','add')
@@ -57,7 +57,7 @@ export default function Main() {
         fetch("/data/employee.json")
             .then(res => res.json())
             .then(empData => {
-                setEmployeeDetails(empData);
+                setEmployeeDetails(empData)
                 modalRoute(empData)
             })
     }
